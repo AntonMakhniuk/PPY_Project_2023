@@ -12,4 +12,4 @@ Website for reference of what we want to achieve: [example](https://shikimori.on
 
 Students:
 - s24379(AntonMakhniuk)
-- s25416 (OleksandrSokils25416)
+- s25416(OleksandrSokils25416)
