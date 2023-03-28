@@ -10,6 +10,6 @@ Our project is a web application with the following functionalities:
 
 Website for reference of what we want to achieve: [example](https://shikimori.one/)
 
-Students:
+**Students:**
 - s24379 (AntonMakhniuk)
 - s25416 (OleksandrSokils25416)
