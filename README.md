@@ -1,5 +1,5 @@
-## Web Media Catalog Service
-# PPY_Project_2023
+# Web Media Catalog Service
+## PPY_Project_2023
 Our project is a web application with the following functionalities:
 
 1. Login/registration system for users;
