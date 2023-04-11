@@ -1,7 +1,7 @@
 import setuptools
 
 
-long_description = "My long description"
+
 
 setuptools.setup(
     name="PPY_Poject_2023",
