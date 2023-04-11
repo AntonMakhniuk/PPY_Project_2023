@@ -1,6 +1,6 @@
 use this commands to donwload fastAPI
-pip install fastapi
-pip install "uvicorn[standart]"
+>pip install fastapi
+>pip install "uvicorn[standart]"
 (this for func main.py)
 C:\Users\s25416\PycharmProjects\PPY_Project_2023\Module>python -m uvicorn main:app --reload
 ←[32mINFO←[0m:     Will watch for changes in these directories: ['C:\\Users\\s25416\\PycharmProjects\\PPY_Project_2023\\Module']
