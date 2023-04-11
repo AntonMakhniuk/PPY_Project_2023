@@ -9,6 +9,7 @@ setuptools.setup(
     author="Oleksandr Sokil, Anton Makhniuk",
     author_email="s25416@pjwstk.edu.pl,s24379@pjwstk.edu.pl",
     description="Web Media Catalog Service",
+    url="https://github.com/AntonMakhniuk/PPY_Project_2023",
     packages=setuptools.find_packages(),
     python_requires=">=3.6",
     install_requires=[
