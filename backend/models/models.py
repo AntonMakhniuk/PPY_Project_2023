@@ -1,10 +1,7 @@
-from datetime import date
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, MetaData, Table
-from sqlalchemy.orm import sessionmaker, relationship, Mapped, mapped_column, registry
-
-metadata = MetaData()
-mapper_registry = registry(metadata=metadata)
-
+from datetime import date, datetime
+from sqlalchemy import Column, String, ForeignKey, Table
+from sqlalchemy.orm import relationship, Mapped, mapped_column
+from backend.dependencies import metadata, mapper_registry
 
 artwork_tag_association = Table(
     "artwork_tag",
@@ -18,7 +15,6 @@ artwork_tag_association = Table(
 class Category:
     __tablename__ = "category"
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(nullable=False)
     description: Mapped[str] = mapped_column(nullable=False)
 
@@ -28,12 +24,17 @@ class Category:
         cascade="save-update, delete, delete-orphan"
     )
 
+    id: Mapped[int | None] = mapped_column(
+        default_factory=lambda: None,
+        primary_key=True,
+        autoincrement=True
+    )
+
 
 @mapper_registry.mapped_as_dataclass
 class Artwork:
     __tablename__ = "artwork"
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     title: Mapped[str] = mapped_column(nullable=False)
     description: Mapped[str] = mapped_column(nullable=False)
     poster_url: Mapped[str] = mapped_column(nullable=False)
@@ -62,16 +63,21 @@ class Artwork:
         default_factory=lambda: []
     )
 
+    id: Mapped[int | None] = mapped_column(
+        default_factory=lambda: None,
+        primary_key=True,
+        autoincrement=True
+    )
+
 
 @mapper_registry.mapped_as_dataclass
 class User:
     __tablename__ = "user"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
     login: Mapped[str] = mapped_column(nullable=False)
     password: Mapped[str] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(nullable=False)
-    created_at: Mapped[date] = mapped_column(nullable=False)
+    created_at: Mapped[datetime] = mapped_column(nullable=False)
 
     comments: Mapped[list["Comment"]] = relationship(
         back_populates="author",
@@ -85,43 +91,58 @@ class User:
         cascade="save-update, delete, delete-orphan"
     )
 
+    id: Mapped[int | None] = mapped_column(
+        default_factory=lambda: None,
+        primary_key=True,
+        autoincrement=True
+    )
+
 
 @mapper_registry.mapped_as_dataclass
 class Comment:
     __tablename__ = "comment"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
     text: Mapped[str] = mapped_column(nullable=False)
     likes: Mapped[int] = mapped_column(nullable=False)
     dislikes: Mapped[int] = mapped_column(nullable=False)
 
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
+    author_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
     author: Mapped[User] = relationship(back_populates="comments")
 
     artwork_id: Mapped[int] = mapped_column(ForeignKey("artwork.id"))
     artwork: Mapped[Artwork] = relationship(back_populates="comments")
+
+    id: Mapped[int | None] = mapped_column(
+        default_factory=lambda: None,
+        primary_key=True,
+        autoincrement=True
+    )
 
 
 @mapper_registry.mapped_as_dataclass
 class Review:
     __tablename__ = "review"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
     text: Mapped[str] = mapped_column(nullable=False)
     score: Mapped[float] = mapped_column(nullable=False)
 
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
+    author_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
     author: Mapped[User] = relationship(back_populates="reviews")
 
     artwork_id: Mapped[int] = mapped_column(ForeignKey("artwork.id"))
     artwork: Mapped[Artwork] = relationship(back_populates="reviews")
+
+    id: Mapped[int | None] = mapped_column(
+        default_factory=lambda: None,
+        primary_key=True,
+        autoincrement=True
+    )
 
 
 @mapper_registry.mapped_as_dataclass
 class Tag:
     __tablename__ = "tag"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(nullable=False)
     description: Mapped[str] = mapped_column(nullable=False)
 
@@ -132,11 +153,8 @@ class Tag:
         cascade="save-update, delete"
     )
 
-
-DB_URL = "sqlite:///database.db"
-engine = create_engine(DB_URL, connect_args={"check_same_thread": False}, echo=True)
-connection = engine.connect()
-metadata.create_all(bind=engine)
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-
+    id: Mapped[int | None] = mapped_column(
+        default_factory=lambda: None,
+        primary_key=True,
+        autoincrement=True
+    )
