@@ -86,6 +86,15 @@ class ArtworkBase(BaseModel):
     star_rating: float
 
 
+class ArtworkUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    poster_url: Optional[HttpUrl] = None
+    release_date: Optional[date] = None
+    age_rating: Optional[str] = None
+    star_rating: Optional[float] = None
+
+
 class ArtworkCreate(ArtworkBase):
     pass
 
@@ -131,7 +140,11 @@ class UserBase(BaseModel):
     login: str
     password: str
     email: EmailStr
-    created_at: datetime
+
+
+class UserUpdate(BaseModel):
+    password: Optional[str] = None
+    email: Optional[EmailStr] = None
 
 
 class UserCreate(UserBase):
@@ -140,6 +153,7 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
+    created_at: datetime
     comments: list[Comment]
     reviews: list[Review]
 

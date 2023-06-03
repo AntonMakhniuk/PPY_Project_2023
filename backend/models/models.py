@@ -1,4 +1,6 @@
 from datetime import date, datetime
+from typing import TYPE_CHECKING
+
 from sqlalchemy import Column, String, ForeignKey, Table
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from backend.dependencies import metadata, mapper_registry
@@ -19,7 +21,6 @@ class Category:
     description: Mapped[str] = mapped_column(nullable=False)
 
     artworks: Mapped[list["Artwork"]] = relationship(
-        back_populates="category",
         default_factory=lambda: [],
         cascade="save-update, delete, delete-orphan"
     )
@@ -43,16 +44,13 @@ class Artwork:
     star_rating: Mapped[float] = mapped_column(nullable=False)
 
     category_id: Mapped[int] = mapped_column(ForeignKey("category.id"))
-    category: Mapped[Category] = relationship(back_populates="artworks")
 
     comments: Mapped[list["Comment"]] = relationship(
-        back_populates="artwork",
         default_factory=lambda: [],
         cascade="save-update, delete, delete-orphan"
     )
 
     reviews: Mapped[list["Review"]] = relationship(
-        back_populates="artwork",
         default_factory=lambda: [],
         cascade="save-update, delete, delete-orphan"
     )
@@ -80,13 +78,11 @@ class User:
     created_at: Mapped[datetime] = mapped_column(nullable=False)
 
     comments: Mapped[list["Comment"]] = relationship(
-        back_populates="author",
         default_factory=lambda: [],
         cascade="save-update, delete, delete-orphan"
     )
 
     reviews: Mapped[list["Review"]] = relationship(
-        back_populates="author",
         default_factory=lambda: [],
         cascade="save-update, delete, delete-orphan"
     )
@@ -107,10 +103,8 @@ class Comment:
     dislikes: Mapped[int] = mapped_column(nullable=False)
 
     author_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    author: Mapped[User] = relationship(back_populates="comments")
 
     artwork_id: Mapped[int] = mapped_column(ForeignKey("artwork.id"))
-    artwork: Mapped[Artwork] = relationship(back_populates="comments")
 
     id: Mapped[int | None] = mapped_column(
         default_factory=lambda: None,
@@ -127,10 +121,8 @@ class Review:
     score: Mapped[float] = mapped_column(nullable=False)
 
     author_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    author: Mapped[User] = relationship(back_populates="reviews")
 
     artwork_id: Mapped[int] = mapped_column(ForeignKey("artwork.id"))
-    artwork: Mapped[Artwork] = relationship(back_populates="reviews")
 
     id: Mapped[int | None] = mapped_column(
         default_factory=lambda: None,
