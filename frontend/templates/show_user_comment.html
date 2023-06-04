@@ -5,10 +5,12 @@
 </head>
 <body>
     <h1>User Comments</h1>
+    <form action="/get-users/{user_id}/comments" method="GET">
     <ul>
         {% for comment in user.comments %}
             <li>{{ comment.text }}</li>
         {% endfor %}
     </ul>
+    </form>
 </body>
 </html>

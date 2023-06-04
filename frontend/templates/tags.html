@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Tags</h1>
-    <form action="/tags" method="get">
+    <form action="/get-tags" method="get">
     <ul>
         {% for tag in tags %}
         <li><a href="/tags/{{ tag_id }}">{{ tag.name }}</a></li>

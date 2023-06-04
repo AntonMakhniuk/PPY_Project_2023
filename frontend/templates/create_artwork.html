@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Create Artwork</h1>
-    <form action="/categories/{{ category_id }}/artworks" method="POST">
+    <form action="/post-categories/{category_id}/artworks" method="POST">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title"><br><br>
         <label for="description">Description:</label>

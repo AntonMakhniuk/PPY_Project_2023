@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Artwork Update</title>
+  <title>Update Artwork</title>
 </head>
 <body>
-    <h1>Artwork Update</h1>
-    <p>Artwork Details:</p>
-    <p>Title: {{ artwork.title }}</p>
-    <p>Description: {{ artwork.description }}</p>
-    <p>Category: {{ artwork.category }}</p>
-    <p>Tags: {{ artwork.tags }}</p>
-    <p>Artwork has been updated successfully!</p>
+  <h1>Update Artwork</h1>
+  <form action="/put-artworks/{artwork_id}" method="POST">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" required></textarea><br><br>
+
+    <label for="poster_url">Poster URL:</label><br>
+    <input type="text" id="poster_url" name="poster_url" required><br><br>
+
+    <label for="release_date">Release Date:</label><br>
+    <input type="date" id="release_date" name="release_date" required><br><br>
+
+    <label for="age_rating">Age Rating:</label><br>
+    <input type="text" id="age_rating" name="age_rating" required><br><br>
+
+    <label for="star_rating">Star Rating:</label><br>
+    <input type="number" id="star_rating" name="star_rating" step="0.1" required><br><br>
+
+    <label for="category">Category:</label><br>
+    <select id="category" name="category" required>
+      <option value="">Select a category</option>
+      {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+      {% endfor %}
+    </select><br><br>
+
+    <label for="tags">Tags:</label><br>
+    <select multiple id="tags" name="tags">
+      {% for tag in tags %}
+        <option value="{{ tag.id }}">{{ tag.name }}</option>
+      {% endfor %}
+    </select><br><br>
+
+    <input type="submit" value="Update">
+  </form>
 </body>
 </html>

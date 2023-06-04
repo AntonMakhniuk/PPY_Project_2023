@@ -5,7 +5,10 @@
 </head>
 <body>
     <h1>Comment</h1>
+
+    <form action="/get-comments/{comment_id}" method="get">
     <h2>Comment ID: {{ comment_id }}</h2>
     <p>{{ comment.content }}</p>
+    </form>
 </body>
 </html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Review</title>
+</head>
+<body>
+    <h1>Create Review</h1>
+    <form action="/get-reviews" method="get">
+        {% for review in reviews %}
+        <li>{{ review_id }}</li>
+        {% endfor %}
+    </form>
+</body>
+</html>

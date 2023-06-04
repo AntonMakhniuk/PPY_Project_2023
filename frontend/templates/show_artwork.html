@@ -10,7 +10,7 @@
     <p>Description: {{ artwork.description }}</p>
     <p>Category: {{ artwork.category }}</p>
     <p>Tags: {{ artwork.tags }}</p>
-    <form action="/artworks/{{ artwork_id }}" method="POST">
+    <form action="/get-artworks/{artwork_id}" method="GET">
         <label for="title">New Title:</label>
         <input type="text" id="title" name="title"><br><br>
         <label for="description">New Description:</label>

@@ -5,10 +5,12 @@
 </head>
 <body>
     <h1>Artwork Reviews</h1>
+    <form action="/get-artworks/{artwork_id}/reviews" method="GET">
     <ul>
         {% for review in artwork.reviews %}
             <li>{{ review.text }}</li>
         {% endfor %}
     </ul>
+    </form>
 </body>
 </html>

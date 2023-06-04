@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Update Tag</h1>
-    <form method="post" action="/tags/{{ tag_id }}">
+    <form method="post" action="/put-tags/{tag_id}">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="{{ tag.name }}" required><br><br>
         <button type="submit">Update Tag</button>
