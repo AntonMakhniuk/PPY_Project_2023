@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Artwork Comments</title>
+</head>
+<body>
+    <h1>Artwork Comments</h1>
+    <ul>
+        {% for comment in artwork.comments %}
+            <li>{{ comment.text }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

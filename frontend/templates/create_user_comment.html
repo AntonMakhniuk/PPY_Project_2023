@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create User Comment</title>
+</head>
+<body>
+    <h1>Create User Comment</h1>
+    <form method="post" action="/users/{{ user_id }}/comments">
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

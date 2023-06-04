@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Show Artwork</title>
+</head>
+<body>
+    <h1>Show Artwork</h1>
+    <p>Artwork Details:</p>
+    <p>Title: {{ artwork.title }}</p>
+    <p>Description: {{ artwork.description }}</p>
+    <p>Category: {{ artwork.category }}</p>
+    <p>Tags: {{ artwork.tags }}</p>
+    <form action="/artworks/{{ artwork_id }}" method="POST">
+        <label for="title">New Title:</label>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="description">New Description:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>

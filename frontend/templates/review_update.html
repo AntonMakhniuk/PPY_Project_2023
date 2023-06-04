@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update Review</title>
+</head>
+<body>
+    <h1>Update Review</h1>
+    <form method="POST" action="/reviews/{{ review_id }}">
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" value="{{ review.rating }}" required><br><br>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" rows="4" cols="50" required>{{ review.comment }}</textarea><br><br>
+        <button type="submit">Update Review</button>
+    </form>
+</body>
+</html>

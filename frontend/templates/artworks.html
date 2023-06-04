@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Artworks</title>
+</head>
+<body>
+    <h1>Artworks</h1>
+    <form action="/artworks" method="get">
+    <ul>
+        {% for artwork in artworks %}
+            <li>
+                <a href="/artworks/{{ artwork_id }}">{{ artwork.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    </form>
+</body>
+</html>

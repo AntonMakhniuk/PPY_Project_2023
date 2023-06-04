@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tags</title>
+</head>
+<body>
+    <h1>Tags</h1>
+    <form action="/tags" method="get">
+    <ul>
+        {% for tag in tags %}
+        <li><a href="/tags/{{ tag_id }}">{{ tag.name }}</a></li>
+        {% endfor %}
+    </ul>
+    </form>
+</body>
+</html>

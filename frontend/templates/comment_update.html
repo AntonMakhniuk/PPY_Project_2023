@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update Comment</title>
+</head>
+<body>
+    <h1>Update Comment</h1>
+    <form action="/comments/{{ comment_id }}" method="post">
+        <input type="text" name="content" placeholder="Comment Content" value="{{ comment.content }}">
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>

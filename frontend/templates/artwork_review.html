@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Artwork Reviews</title>
+</head>
+<body>
+    <h1>Artwork Reviews</h1>
+    <ul>
+        {% for review in artwork.reviews %}
+            <li>{{ review.text }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
