@@ -180,7 +180,7 @@ def create_user(request: Request, user_data: dict):
 def show_user(request: Request, user_id: int,user_data: dict):
     response = requests.get(f"http://127.0.0.1:8000/users/{user_id}", json=user_data)
     new_user = response.json()
-    return templates.TemplateResponse("user_added.html", {"request": request, "user": new_user})
+    return templates.TemplateResponse("user_show.html", {"request": request, "user": new_user})
 
 @app.put("/put-users/{user_id}")
 def update_user(request: Request, user_id: int, new_data: dict):

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Show</title>
+</head>
+<body>
+    <h1>User Show</h1>
+    <form action="/get-users/{user_id}" method="get">
+    <h2>User ID: {{ user_id }}</h2>
+    <p>User Data: {{ user }}</p>
+
+    <h2>User Comments</h2>
+    <ul>
+    {% for comment in user.comments %}
+        <li>{{ comment.text }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>User Reviews</h2>
+    <ul>
+    {% for review in user.reviews %}
+        <li>{{ review.text }}</li>
+    {% endfor %}
+    </ul>
+    </form>
+</body>
+</html>
