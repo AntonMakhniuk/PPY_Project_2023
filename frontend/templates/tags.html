@@ -8,10 +8,13 @@
     <form action="/get-tags" method="get">
     <ul>
         {% for tag in tags %}
-        <li><a href="/tags/{{ tag_id }}">{{ tag.name }}</a></li>
-        <li><a href="/tags/{{ tag_id }}">View Details</a></li>
+        <li>{{ tag.name }}</li>
+        <li>{{tag.description}}</li>
         {% endfor %}
+    <li><a href="/createtag">create tag</a></li>
+
     </ul>
     </form>
+
 </body>
 </html>

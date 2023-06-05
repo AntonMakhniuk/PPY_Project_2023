@@ -5,10 +5,13 @@
 </head>
 <body>
     <h1>Create Tag</h1>
-    <form action="/createtag" method="post">
-        <label for="tag_name">Tag Name:</label>
-        <input type="text" id="tag_name" name="tag_name" required>
-        <button type="submit">Create</button>
+    <form action="/create-tag" method="post">
+        <label for="name">name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+        <input type="submit" value="Create">
     </form>
 </body>
 </html>
