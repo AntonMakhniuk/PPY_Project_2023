@@ -2,12 +2,39 @@
 <html lang="en">
 <head>
     <title>Artwork Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .review-score {
+            font-weight: bold;
+        }
+
+        .review-text {
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <h1>Artwork Reviews</h1>
     <form action="/get-artworks/{artwork_id}/reviews" method="GET">
     <ul>
         {% for review in artwork.reviews %}
+            <li>{{ review.score }}</li>
             <li>{{ review.text }}</li>
         {% endfor %}
     </ul>

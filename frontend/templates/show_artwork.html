@@ -2,20 +2,28 @@
 <html lang="en">
 <head>
     <title>Show Artwork</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
+    <form action="/get-artworks/{artwork_id}" method="GET">
     <h1>Show Artwork</h1>
     <p>Artwork Details:</p>
     <p>Title: {{ artwork.title }}</p>
     <p>Description: {{ artwork.description }}</p>
     <p>Category: {{ artwork.category }}</p>
     <p>Tags: {{ artwork.tags }}</p>
-    <form action="/get-artworks/{artwork_id}" method="GET">
-        <label for="title">New Title:</label>
-        <input type="text" id="title" name="title"><br><br>
-        <label for="description">New Description:</label>
-        <textarea id="description" name="description"></textarea><br><br>
-        <input type="submit" value="Update">
     </form>
 </body>
 </html>

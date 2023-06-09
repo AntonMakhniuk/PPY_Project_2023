@@ -2,10 +2,96 @@
 <html>
 <head>
     <title>Update User</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-gap: 10px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault();
+
+                var formData = {
+                    name: $('#name').val(),
+                    email: $('#email').val(),
+                    password: $('#password').val(),
+                };
+
+                $.ajax({
+                    type: 'Put',
+                    url: '/put-users/{user_id}',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        console.log(response);
+                        alert('user created successfully');
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        alert('An error occurred while creating the user');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
+<div class="container">
     <h1>Update User</h1>
-    <form action="/put-users/{{ user_id }}" method="post">
+    <form action="/put-users-form/{user_id}" method="get">
         <label for="login">Login:</label>
         <input type="text" id="login" name="login" value="{{ user.login }}"><br><br>
 
@@ -17,5 +103,6 @@
 
         <input type="submit" value="Update">
     </form>
+</div>
 </body>
 </html>

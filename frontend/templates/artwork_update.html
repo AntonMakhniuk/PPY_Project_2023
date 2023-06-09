@@ -2,10 +2,98 @@
 <html>
 <head>
   <title>Update Artwork</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+      margin-top: 5px;
+    }
+  </style>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault();
+
+                var formData = {
+                    title: $('#title').val(),
+                    description: $('#description').val(),
+                    poster_url: $('#poster_url').val(),
+                    release_date: $('#release_date').val(),
+                    age_rating: $('#age_rating').val(),
+                    star_rating: $('#star_rating').val(),
+                };
+
+                $.ajax({
+                    type: 'Put',
+                    url: '/post-categories/{category_id}/artworks',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        console.log(response);
+                        alert('artwork created successfully');
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        alert('An error occurred while creating the artwork');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
   <h1>Update Artwork</h1>
-  <form action="/put-artworks/{artwork_id}" method="POST">
+  <form action="/put-artworks/{artwork_id}" method="Get">
     <label for="title">Title:</label><br>
     <input type="text" id="title" name="title" required><br><br>
 
