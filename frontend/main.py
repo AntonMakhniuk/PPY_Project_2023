@@ -16,15 +16,42 @@ app = FastAPI(
     on_shutdown=[lambda: close_connection()],
 )
 
+tags_metadata = [
+    {
+        "name": "crud - tags",
+        "description": "CRUD operations for TAG table (data for tags)."
+    },
+    {
+        "name": "crud - categories",
+        "description": "CRUD operations for CATEGORY table (data for categories)."
+    },
+    {
+        "name": "crud - artworks",
+        "description": "CRUD operations for ARTWORK table (data for artworks)."
+    },
+    {
+        "name": "crud - comments",
+        "description": "CRUD operations for COMMENT table (data for comments)."
+    },
+    {
+        "name": "crud - reviews",
+        "description": "CRUD operations for REVIEWS table (data for reviews)."
+    },
+    {
+        "name": "crud - users",
+        "description": "CRUD operations for USER table (data for users)."
+    },
+]
+
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 templates = Jinja2Templates(directory="frontend/templates")
 
-app.include_router(router=tags_router.router, prefix="/tags")
-app.include_router(router=categories_router.router, prefix="/categories")
-app.include_router(router=artworks_router.router, prefix="/artworks")
-app.include_router(router=comments_router.router, prefix="/comments")
-app.include_router(router=reviews_router.router, prefix="/reviews")
-app.include_router(router=users_router.router, prefix="/users")
+app.include_router(router=tags_router.router, prefix="/tags", tags=["crud - tags"])
+app.include_router(router=categories_router.router, prefix="/categories", tags=["crud - categories"])
+app.include_router(router=artworks_router.router, prefix="/artworks", tags=["crud - artworks"])
+app.include_router(router=comments_router.router, prefix="/comments", tags=["crud - comments"])
+app.include_router(router=reviews_router.router, prefix="/reviews", tags=["crud - reviews"])
+app.include_router(router=users_router.router, prefix="/users", tags=["crud - users"])
 
 
 @app.get("/")

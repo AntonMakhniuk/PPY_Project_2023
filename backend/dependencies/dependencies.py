@@ -1,8 +1,6 @@
-from dataclasses import dataclass
-from typing import Callable, Iterable
+from typing import Iterable
 
 from sqlalchemy import create_engine, MetaData
-from sqlalchemy.engine import Connection, Engine
 from sqlalchemy.orm import sessionmaker, Session, registry
 
 metadata = MetaData()
