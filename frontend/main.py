@@ -3,7 +3,8 @@ from fastapi.templating import Jinja2Templates
 import requests
 from starlette.staticfiles import StaticFiles
 
-from backend.dependencies import close_connection, engine, metadata
+from backend.dependencies import close_db_state, db_state, metadata
+# from backend.dependencies import close_connection, engine, metadata
 from backend.routers import tags as tags_router
 from backend.routers import categories as categories_router
 from backend.routers import artworks as artworks_router
@@ -12,8 +13,8 @@ from backend.routers import reviews as reviews_router
 from backend.routers import users as users_router
 
 app = FastAPI(
-    on_startup=[lambda: metadata.create_all(bind=engine)],
-    on_shutdown=[lambda: close_connection()],
+    on_startup=[lambda: metadata.create_all(bind=db_state.engine)],
+    on_shutdown=[lambda: close_db_state(db_state)],
 )
 
 tags_metadata = [

@@ -95,5 +95,10 @@ def create_review(user_id: int, artwork_id: int, review: schemas.ReviewCreate, d
     if crud.get_artwork_by_id(db, artwork_id) is None:
         raise HTTPException(status_code=404, detail="Artwork not found")
 
+    user_reviews = crud.get_reviews_from_user(db, user_id=user_id)
+
+    if any(review.artwork_id == artwork_id for review in user_reviews):
+        raise HTTPException(status_code=400, detail="User with this id already has a review for artwork with this id")
+
     return crud.create_review(db, user_id=user_id, artwork_id=artwork_id, review_schema=review)
 

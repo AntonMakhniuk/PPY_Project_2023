@@ -40,6 +40,11 @@ def update_category(category_id: int, category_schema_updated: schemas.CategoryU
     if check_category is None:
         raise HTTPException(status_code=404, detail="Category not found")
 
+    check_category = crud.get_category_by_name(db, category_schema_updated.name)
+
+    if check_category:
+        raise HTTPException(status_code=409, detail="Category with such name already exists")
+
     return crud.update_category_base(db, category_id, category_schema_updated)
 
 

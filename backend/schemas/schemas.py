@@ -4,10 +4,15 @@ from pydantic import BaseModel, EmailStr, HttpUrl
 
 
 # Schemas for COMMENT
+# ================================================= #
+# ================================================= #
 class CommentBase(BaseModel):
     text: str
     likes: int
     dislikes: int
+
+    class Config:
+        orm_mode = True
 
 
 class CommentUpdate(BaseModel):
@@ -25,14 +30,16 @@ class Comment(CommentBase):
     author_id: int
     artwork_id: int
 
-    class Config:
-        orm_mode = True
-
 
 # Schemas for REVIEW
+# ================================================= #
+# ================================================= #
 class ReviewBase(BaseModel):
     text: str
     score: float
+
+    class Config:
+        orm_mode = True
 
 
 class ReviewUpdate(BaseModel):
@@ -49,14 +56,16 @@ class Review(ReviewBase):
     author_id: int
     artwork_id: int
 
-    class Config:
-        orm_mode = True
-
 
 # Schemas for TAG
+# ================================================= #
+# ================================================= #
 class TagBase(BaseModel):
     name: str
     description: str
+
+    class Config:
+        orm_mode = True
 
 
 class TagUpdate(BaseModel):
@@ -72,11 +81,10 @@ class Tag(TagBase):
     id: int
     artworks: list["ArtworkBase"]
 
-    class Config:
-        orm_mode = True
-
 
 # Schemas for ARTWORK
+# ================================================= #
+# ================================================= #
 class ArtworkBase(BaseModel):
     title: str
     description: str
@@ -84,6 +92,9 @@ class ArtworkBase(BaseModel):
     release_date: date
     age_rating: str
     star_rating: float
+
+    class Config:
+        orm_mode = True
 
 
 class ArtworkUpdate(BaseModel):
@@ -106,17 +117,20 @@ class Artwork(ArtworkBase):
     reviews: list[Review]
     tags: list[TagBase]
 
-    class Config:
-        orm_mode = True
-
 
 Tag.update_forward_refs(ArtworkBase=ArtworkBase)
 
 
 # Schemas for CATEGORY
+# ================================================= #
+# ================================================= #
 class CategoryBase(BaseModel):
     name: str
     description: str
+
+    class Config:
+        orm_mode = True
+
 
 class CategoryUpdate(BaseModel):
     name: Optional[str] = None
@@ -131,15 +145,17 @@ class Category(CategoryBase):
     id: int
     artworks: list[ArtworkBase]
 
-    class Config:
-        orm_mode = True
-
 
 # Schemas for USER
+# ================================================= #
+# ================================================= #
 class UserBase(BaseModel):
     login: str
     password: str
     email: EmailStr
+
+    class Config:
+        orm_mode = True
 
 
 class UserUpdate(BaseModel):
@@ -156,6 +172,3 @@ class User(UserBase):
     created_at: datetime
     comments: list[Comment]
     reviews: list[Review]
-
-    class Config:
-        orm_mode = True

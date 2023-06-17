@@ -6,6 +6,8 @@ from backend import models, schemas
 
 
 # CRUD functions for USER table
+# ================================================= #
+# ================================================= #
 def get_users(db: Session, skip: int = 0, limit: int = 100) -> list[Type[models.User]]:
     return db.query(models.User).options(
         joinedload(models.User.comments),
@@ -26,7 +28,10 @@ def get_user_by_email(db: Session, user_login: str) -> models.User | None:
 
 
 def create_user(db: Session, user_schema: schemas.UserCreate) -> models.User:
-    user_model = models.User(**user_schema.dict(), created_at=datetime.now())
+    user_model = models.User(**user_schema.dict(),
+                             created_at=datetime.now(),
+                             comments=[],
+                             reviews=[])
 
     db.add(user_model)
     db.commit()
@@ -52,7 +57,7 @@ def delete_user(db: Session, user_id: int) -> models.User | None:
     check_user = query.first()
     db.expire_on_commit = False
 
-    query.delete(synchronize_session=False)
+    db.delete(check_user)
     db.commit()
 
     db.expire_on_commit = True
@@ -61,6 +66,8 @@ def delete_user(db: Session, user_id: int) -> models.User | None:
 
 
 # CRUD functions for COMMENT table
+# ================================================= #
+# ================================================= #
 def get_all_comments(db: Session, skip: int = 0, limit: int = 100) -> list[Type[models.Comment]]:
     return db.query(models.Comment).offset(skip).limit(limit).all()
 
@@ -78,7 +85,14 @@ def get_comment_by_id(db: Session, comment_id: int) -> models.Comment | None:
 
 
 def create_comment(db: Session, comment_schema: schemas.CommentCreate, user_id: int, artwork_id: int) -> models.Comment:
-    comment_model = models.Comment(**comment_schema.dict(), author_id=user_id, artwork_id=artwork_id)
+    artwork_model = get_artwork_by_id(db, artwork_id)
+    author_model = get_user_by_id(db, user_id)
+
+    comment_model = models.Comment(**comment_schema.dict(),
+                                   author_id=user_id,
+                                   author=author_model,
+                                   artwork_id=artwork_id,
+                                   artwork=artwork_model)
 
     db.add(comment_model)
     db.commit()
@@ -104,7 +118,7 @@ def delete_comment(db: Session, comment_id: int) -> models.Comment | None:
     check_comment = query.first()
     db.expire_on_commit = False
 
-    query.delete(synchronize_session=False)
+    db.delete(check_comment)
     db.commit()
 
     db.expire_on_commit = True
@@ -113,6 +127,8 @@ def delete_comment(db: Session, comment_id: int) -> models.Comment | None:
 
 
 # CRUD functions for REVIEW table
+# ================================================= #
+# ================================================= #
 def get_all_reviews(db: Session, skip: int = 0, limit: int = 100) -> list[Type[models.Review]]:
     return db.query(models.Review).offset(skip).limit(limit).all()
 
@@ -130,7 +146,14 @@ def get_review_by_id(db: Session, review_id: int) -> models.Review | None:
 
 
 def create_review(db: Session, review_schema: schemas.ReviewCreate, user_id: int, artwork_id: int) -> models.Review:
-    review_model = models.Review(**review_schema.dict(), author_id=user_id, artwork_id=artwork_id)
+    artwork_model = get_artwork_by_id(db, artwork_id)
+    author_model = get_user_by_id(db, user_id)
+
+    review_model = models.Review(**review_schema.dict(),
+                                 author_id=user_id,
+                                 author=author_model,
+                                 artwork_id=artwork_id,
+                                 artwork=artwork_model)
 
     db.add(review_model)
     db.commit()
@@ -156,7 +179,7 @@ def delete_review(db: Session, review_id: int) -> models.Review | None:
     check_review = query.first()
     db.expire_on_commit = False
 
-    query.delete(synchronize_session=False)
+    db.delete(check_review)
     db.commit()
 
     db.expire_on_commit = True
@@ -165,6 +188,8 @@ def delete_review(db: Session, review_id: int) -> models.Review | None:
 
 
 # CRUD functions for ARTWORK table
+# ================================================= #
+# ================================================= #
 def get_all_artworks(db: Session, skip: int = 0, limit: int = 100) -> list[Type[models.Artwork]]:
     return db.query(models.Artwork).offset(skip).limit(limit).all()
 
@@ -185,7 +210,10 @@ def create_artwork(db: Session, category_id: int, artwork_schema: schemas.Artwor
         release_date=artwork_schema.release_date,
         age_rating=artwork_schema.age_rating,
         star_rating=artwork_schema.star_rating,
-        category_id=category_id
+        category_id=category_id,
+        comments=[],
+        reviews=[],
+        tags=[]
     )
 
     db.add(artwork_model)
@@ -210,7 +238,7 @@ def update_artwork_base(db: Session, artwork_id: int, artwork_schema_updated: sc
 def artwork_add_tag(db: Session, artwork_id: int, tag_id: int) -> models.Artwork:
     artwork_model = db.query(models.Artwork).filter(models.Artwork.id == artwork_id).one()
     tag_model = db.query(models.Tag).filter(models.Tag.id == tag_id).one()
-    artwork_model.tags.add(tag_model)
+    artwork_model.tags.append(tag_model)
 
     db.commit()
     db.refresh(artwork_model)
@@ -234,7 +262,7 @@ def delete_artwork(db: Session, artwork_id: int) -> models.Artwork | None:
     check_artwork = query.first()
     db.expire_on_commit = False
 
-    query.delete(synchronize_session=False)
+    db.delete(check_artwork)
     db.commit()
 
     db.expire_on_commit = True
@@ -243,8 +271,15 @@ def delete_artwork(db: Session, artwork_id: int) -> models.Artwork | None:
 
 
 # CRUD functions for TAG table
+# ================================================= #
+# ================================================= #
 def get_tags(db: Session, skip: int = 0, limit: int = 100) -> list[Type[models.Tag]]:
     return db.query(models.Tag).options(joinedload(models.Tag.artworks)).offset(skip).limit(limit).all()
+
+
+def get_tags_from_artwork(db: Session, artwork_id: int, skip: int = 0, limit: int = 100) -> list[Type[models.Tag]]:
+    artwork_model = get_artwork_by_id(db, artwork_id)
+    return db.query(models.Tag).filter(models.Tag.artworks.contains(artwork_model)).offset(skip).limit(limit).all()
 
 
 def get_tag_by_id(db: Session, tag_id: int) -> models.Tag | None:
@@ -252,13 +287,14 @@ def get_tag_by_id(db: Session, tag_id: int) -> models.Tag | None:
 
 
 def get_tag_by_name(db: Session, tag_name: str) -> models.Tag | None:
-    return db.query(models.Tag).options(joinedload(models.Tag.artworks)).filter(models.Tag.id == tag_name).first()
+    return db.query(models.Tag).options(joinedload(models.Tag.artworks)).filter(models.Tag.name == tag_name).first()
 
 
 def create_tag(db: Session, tag_schema: schemas.TagCreate) -> models.Tag:
     tag_model = models.Tag(
         name=tag_schema.name,
         description=tag_schema.description,
+        artworks=[]
     )
 
     db.add(tag_model)
@@ -286,7 +322,7 @@ def delete_tag(db: Session, tag_id: int) -> models.Tag | None:
     check_tag = query.first()
     db.expire_on_commit = False
 
-    query.delete(synchronize_session=False)
+    db.delete(check_tag)
     db.commit()
 
     db.expire_on_commit = True
@@ -295,6 +331,8 @@ def delete_tag(db: Session, tag_id: int) -> models.Tag | None:
 
 
 # CRUD functions for CATEGORY table
+# ================================================= #
+# ================================================= #
 def get_categories(db: Session, skip: int = 0, limit: int = 100) -> list[Type[models.Category]]:
     return db.query(models.Category).options(joinedload(models.Category.artworks)).offset(skip).limit(limit).all()
 
@@ -313,6 +351,7 @@ def create_category(db: Session, category_schema: schemas.CategoryCreate) -> mod
     category_model = models.Category(
         name=category_schema.name,
         description=category_schema.description,
+        artworks=[]
     )
 
     db.add(category_model)
@@ -341,7 +380,7 @@ def delete_category(db: Session, category_id: int) -> models.Category | None:
     check_category = query.first()
     db.expire_on_commit = False
 
-    query.delete(synchronize_session=False)
+    db.delete(check_category)
     db.commit()
 
     db.expire_on_commit = True

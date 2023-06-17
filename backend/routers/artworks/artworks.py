@@ -25,9 +25,7 @@ def get_artwork(artwork_id: int, db: Session = Depends(get_db)):
 
 @router.put("/{artwork_id}", response_model=schemas.Artwork)
 def update_artwork(artwork_id: int, artwork_schema_updated: schemas.ArtworkUpdate, db: Session = Depends(get_db)):
-    check_artwork = crud.get_artwork_by_id(db, artwork_id)
-
-    if check_artwork is None:
+    if crud.get_artwork_by_id(db, artwork_id) is None:
         raise HTTPException(status_code=404, detail="Artwork not found")
 
     return crud.update_artwork_base(db, artwork_id, artwork_schema_updated)
@@ -35,14 +33,10 @@ def update_artwork(artwork_id: int, artwork_schema_updated: schemas.ArtworkUpdat
 
 @router.delete("/{artwork_id}", response_model=schemas.Artwork)
 def delete_artwork(artwork_id: int, db: Session = Depends(get_db)):
-    check_artwork = crud.get_artwork_by_id(db, artwork_id)
-
-    if check_artwork is None:
+    if crud.get_artwork_by_id(db, artwork_id) is None:
         raise HTTPException(status_code=404, detail="Artwork not found")
 
-    check_artwork = crud.delete_artwork(db, artwork_id)
-
-    return check_artwork
+    return crud.delete_artwork(db, artwork_id)
 
 
 @router.get("/{artwork_id}/comments/", response_model=list[schemas.Comment])
@@ -59,3 +53,40 @@ def get_reviews_from_artwork(artwork_id: int, skip: int = 0, limit: int = 100, d
         raise HTTPException(status_code=404, detail="Artwork not found")
 
     return crud.get_reviews_from_artwork(db, artwork_id=artwork_id, skip=skip, limit=limit)
+
+
+@router.get("/{artwork_id}/tags/", response_model=list[schemas.Tag])
+def get_tags_from_artwork(artwork_id: int, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    if crud.get_artwork_by_id(db, artwork_id) is None:
+        raise HTTPException(status_code=404, detail="Artwork not found")
+
+    return crud.get_tags_from_artwork(db, artwork_id=artwork_id, skip=skip, limit=limit)
+
+
+@router.post("/{artwork_id}/tags/{tag_id}", response_model=schemas.Artwork)
+def add_tag_to_artwork(artwork_id: int, tag_id: int, db: Session = Depends(get_db)):
+    if crud.get_tag_by_id(db, tag_id) is None:
+        raise HTTPException(status_code=404, detail="Tag not found")
+
+    if crud.get_artwork_by_id(db, artwork_id) is None:
+        raise HTTPException(status_code=404, detail="Artwork not found")
+
+    return crud.artwork_add_tag(db, artwork_id=artwork_id, tag_id=tag_id)
+
+
+@router.delete("/{artwork_id}/tags/{tag_id}", response_model=schemas.Artwork)
+def remove_tag_from_artwork(artwork_id: int, tag_id: int, db: Session = Depends(get_db)):
+    check_tag = crud.get_tag_by_id(db, tag_id)
+
+    if check_tag is None:
+        raise HTTPException(status_code=404, detail="Tag not found")
+
+    check_artwork = crud.get_artwork_by_id(db, artwork_id)
+
+    if check_artwork is None:
+        raise HTTPException(status_code=404, detail="Artwork not found")
+
+    if check_tag not in check_artwork.tags:
+        raise HTTPException(status_code=404, detail="Tag with this id is not attached to artwork with this id")
+
+    return crud.artwork_remove_tag(db, artwork_id=artwork_id, tag_id=tag_id)
