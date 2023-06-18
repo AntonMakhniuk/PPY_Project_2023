@@ -1,0 +1,544 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta charset="utf-8" />
+		<title>I-Geek | Home page </title>
+		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta property="og:type" content="company" />
+		<meta property="og:title" content="I-Geek | Home" />
+		<meta property="og:image" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:site_name" content="I-Geek | Home" />
+		<link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/dat-menu.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/main-stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/responsive.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
+		<meta name="theme-color" content="black">
+		<meta name="msapplication-navbutton-color" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--[if lt IE 9 ]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style>
+			#featured-img-1 {
+				background-image: url(images/photos/image-1.jpg);
+			}
+			#featured-img-2 {
+				background-image: url(images/photos/image-2.jpg);
+			}
+			#featured-img-3 {
+				background-image: url(images/photos/image-3.jpg);
+			}
+			#featured-img-4 {
+				background-image: url(images/photos/image-4.jpg);
+			}
+
+			#sidebar .panel,
+			#main-box #main {
+				border-top: 5px solid #256193;
+			}
+
+			/* Slider colors, default #256193 */
+			a.featured-select,
+			#slider-info .padding-box ul li:before,
+			.home-article.right ul li a:hover {
+				background-color: #256193;
+			}
+
+			/* Button color, default #256193 */
+			.panel-duel-voting .panel-duel-vote a {
+				background-color: #256193;
+			}
+
+			/* Menu background color, default #000 */
+			#menu-bottom.blurred #menu > .blur-before:after {
+				background-color: #000;
+			}
+
+			/* Top menu background, default #0D0D0D */
+			#header-top {
+				background: #0D0D0D;
+			}
+
+			/* Sidebar panel titles color, default #333333 */
+			#sidebar .panel > h2 {
+				color: #333333;
+			}
+
+			/* Main titles color, default #353535 */
+			#main h2 span {
+				color: #353535;
+			}
+
+			/* Selection color, default #256193 */
+			::selection {
+				background: #256193;
+			}
+
+			/* Links hover color, default #256193 */
+			.article-icons a:hover,
+			a:hover {
+				color: #256193;
+			}
+
+			/* Image hover background, default #256193 */
+			.article-image-out,
+			.article-image {
+				background: #256193;
+			}
+
+			/* Image hover icons color, default #256193 */
+			span.article-image span .fa {
+				color: #256193;
+			}
+
+		</style>
+	</head>
+	<!--<body class="no-slider">-->
+	<body class="no-slider">
+		<!-- BEGIN #slider-imgs -->
+		<div id="slider-imgs">
+			<div class="featured-img-box">
+				<div id="featured-img-1" class="featured-img"></div>
+				<div id="featured-img-2" class="featured-img invisible"></div>
+				<div id="featured-img-3" class="featured-img invisible"></div>
+				<div id="featured-img-4" class="featured-img invisible"></div>
+			</div>
+		<!-- END #slider-imgs -->
+		</div>
+
+
+		<!-- BEGIN #top-layer -->
+		<div id="top-layer">
+			<div id="header-top">
+				<div class="wrapper">
+					<ul class="right">
+						
+						<li><a href="https://github.com/AntonMakhniuk/PPY_Project_2023" target="_blank"><i class="fa fa-github"></i></a></li>
+						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
+					</ul>
+					<ul class="load-responsive" rel="Menu">
+						<li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">signup</a></li>
+					</ul>
+				</div>
+			</div>
+			<section id="content">
+
+				<header id="header">
+					<div id="menu-bottom">
+						<!-- <nav id="menu" class="main-menu width-fluid"> -->
+						<nav id="menu" class="main-menu">
+							<div class="blur-before"></div>
+							<a href="index.html" class="header-logo left"><img src="images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
+							<ul class="load-responsive" rel="Main menu">
+								<li><a href="review.html"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
+									<ul class="sub-menu">
+										<li><a href="rewiew-single.html">review info</a></li>
+										<li><a href="full-width.html">review</a></li>
+									</ul>
+								</li>
+								<li><a><span id="search-link" title="Search"><i class="fa fa-search"></i> Search</span></a>
+
+								</li>
+								<li><a href="shortcodes.html"><span><i class="fa fa-puzzle-piece"></i><strongshortcodes></strongshortcodes></strong></span></a>
+									<ul class="sub-menu">
+										<li><a href="shortcodes.html">shortcodes</a></li>
+										<li><a href="signup.html">signup</a></li>
+										<li><a href="games-single.html">art-single</a></li>
+									</ul>
+								</li>
+								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>forum</strong></span></a>
+									<ul class="sub-menu">
+										<li><a href="forum.html">forum</a></li>
+										<li><a href="forum-threads.html">forum-threads</a></li>
+										<li><a href="forum-single.html">forum-single</a></li>
+										<li><a href="forum-create.html">orum-create</a></li>
+									</ul>
+								</li>
+								<li><a href="user-single.html"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
+
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+				<div id="main-box">
+					
+					<div id="main">
+
+						
+
+						<h2><span>Categories</span></h2>
+						<h3>Will be changed to list of some categories</h3>
+						<div class="content-padding">
+							<div class="home-article left">
+								<span class="article-image-out">
+									<span class="image-comments"><span>21</span></span>
+									<span class="article-image">
+										<span class="nth1 strike-tooltip" title="Прочитати">
+											<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
+										</span>
+										<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
+											<a href="#"><i class="fa fa-plus"></i></a>
+										</span>.
+										<a href="rewiew-single.html"><img src="images/photos/image-9.jpg" alt="" title="" /></a>
+									</span>
+								</span>
+								<h3><a href="rewiew-single.html">We working!!!!</a></h3>
+								<p>Now our project is located on GitHub you can enter it by link bellow.</p>
+								<div>
+									<a href="https://github.com/AntonMakhniuk/PPY_Project_2023" class="defbutton"><i class="fa fa-reply"></i>go to the git</a>
+								</div>
+							</div>
+							<div class="home-article right">
+								<ul>
+									<li>
+										<a href="rewiew-single.html">
+											<span class="image-comments"><span>21</span></span>
+											<img src="images/photos/image-10.jpg" alt="" title="" />
+											<strong>post1</strong>
+											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
+										</a>
+									</li>
+									<li>
+										<a href="rewiew-single.html">
+											<span class="image-comments inactive"><span>200</span></span>
+											<img src="images/photos/image-11.jpg" alt="" title="" />
+											<strong>Cyberpunk 2077 перенесли ще на два місяці.</strong>
+											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
+										</a>
+									</li>
+									<li>
+										<a href="rewiew-single.html">
+											<span class="image-comments"><span>10</span></span>
+											<img src="images/photos/image-12.jpg" alt="" title="" />
+											<strong>Голова Bethesda розповів про екранізацію Fallout</strong>
+											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
+										</a>
+									</li>
+									<li>
+										<a href="rewiew-single.html">
+											<span class="image-comments"><span>9</span></span>
+											<img src="images/photos/image-13.jpg" alt="" title="" />
+											<strong>Наш плейлист без ап тепер доступний на нашому сайті</strong>
+											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
+										</a>
+									</li>
+									<li>
+										<a href="rewiew-single.html">
+											<span class="image-comments"><span>3</span></span>
+											<img src="images/photos/image-14.jpg" alt="" title="" />
+											<strong>ФЕНДОМ на основі Вікіа — це безкоштовний сервіс вікі-хостингу...</strong>
+											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
+										</a>
+									</li>
+									<li>
+										<a href="rewiew-single.html">
+											<span class="image-comments"><span>0</span></span>
+											<img src="images/photos/image-15.jpg" alt="" title="" />
+											<strong>Гру Minecraft придбали понад 200 мільйонів гравців</strong>
+											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
+										</a>
+									</li>
+								</ul>
+
+								<div>
+									<a href="#" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
+								</div>
+								
+							</div>
+							<div class="clear-float"></div>
+						</div>
+
+						<h2><span>Останнє</span></h2>
+						<div class="content-padding">
+							<div class="grid-articles">
+
+								<!-- BEGIN .item -->
+								<div class="item">
+									
+									<span class="article-image-out">
+										<span class="image-comments"><span>21</span></span>
+										<span class="article-image">
+											<span class="nth1 strike-tooltip" title="Прочитати">
+												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
+											</span>
+											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
+												<a href="#"><i class="fa fa-plus"></i></a>
+											</span>
+											<a href="https://www.youtube.com/watch?v=hxUyNVEuJ5k&t=74s"><img src="images/photos/image-25.jpg" alt="" title="" /></a>
+										</span>
+									</span>
+									<h3><a href="rewiew-single.html">Як Отримати безкоштовно GTA V</a></h3>
+									<p>Хай бро, і сьогодні я вам розкажу, як отримати ГТА 5 Безкоштовно. Для цього нам треба завантажити таку програму як...</p>
+									<div>
+										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
+									</div>
+
+								<!-- END .item -->
+								</div>
+
+								<!-- BEGIN .item -->
+								<div class="item">
+									
+									<span class="article-image-out">
+										<span class="image-comments"><span>21</span></span>
+										<span class="article-image">
+											<span class="nth1 strike-tooltip" title="Прочитати">
+												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
+											</span>
+											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
+												<a href="#"><i class="fa fa-plus"></i></a>
+											</span>
+											<a href="https://www.youtube.com/watch?v=EgI0V9qeiTw&t=1s"><img src="images/photos/image-26.jpg" alt="" title="" /></a>
+										</span>
+									</span>
+									<h3><a href="rewiew-single.html">Як зробити студійне звучання мікрофону</a></h3>
+									<p>Хай бро, і сьогодні я вам розкажу, як прокачати ваш мікрофон до рівня студійного. Для цього треба зробити кілька простих речей: ...</p>
+									<div>
+										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
+									</div>
+
+								<!-- END .item -->
+								</div>
+
+								<!-- BEGIN .item -->
+								<div class="item">
+									
+									<span class="article-image-out">
+										<span class="image-comments"><span>21</span></span>
+										<span class="article-image">
+											<span class="nth1 strike-tooltip" title="Прочитати">
+												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
+											</span>
+											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
+												<a href="#"><i class="fa fa-plus"></i></a>
+											</span>
+											<a href="https://www.youtube.com/watch?v=9Cgb2h4PQLg&t=39s"><img src="images/photos/image-27.jpg" alt="" title="" /></a>
+										</span>
+									</span>
+									<h3><a href="https://www.youtube.com/watch?v=9Cgb2h4PQLg&t=36s">ПАК МУЗИКИ | 2020 | SUMMER EDITION </a></h3>
+									<p>Хай бро, сьогодні у нас пак музики summer edition, який має допомогти вам у створенні ваших прекрасних відео!!!...</p>
+									<div>
+										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
+									</div>
+
+								<!-- END .item -->
+								</div>
+
+								<!-- BEGIN .item -->
+								<div class="item">
+									
+									<span class="article-image-out">
+										<span class="image-comments"><span>21</span></span>
+										<span class="article-image">
+											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
+												<a href="#"><i class="fa fa-plus"></i></a>
+											</span>
+											<a href="rewiew-single.html"><img src="images/photos/image-28.jpg" alt="" title="" /></a>
+										</span>
+									</span>
+									<h3><a href="https://www.youtube.com/watch?v=DFCNKStK6y0"> МАНІФЕСТ - УКРАЇНСЬКИЙ ЮТУБ</a></h3>
+									<p>Хай бро, сьогодні ми поговоримо про Маніфест - платформу для розвитку україномовного ютубу, який потихенько розвивається...</p>
+									<div>
+										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
+									</div>
+
+								<!-- END .item -->
+								</div>
+
+								<!-- BEGIN .item -->
+								<div class="item">
+									
+									<span class="article-image-out">
+										<span class="image-comments"><span>21</span></span>
+										<span class="article-image">
+											<span class="nth1 strike-tooltip" title="Прочитати">
+												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
+											</span>
+											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
+												<a href="#"><i class="fa fa-plus"></i></a>
+											</span>
+											<a href="rewiew-single.html"><img src="images/photos/image-29.jpg" alt="" title="" /></a>
+										</span>
+									</span>
+									<h3><a href="https://www.youtube.com/watch?v=QoOfIWNHR0k">| КОРОНАВІРУС | ЯК ВИЖИТИ ПІД ЧАС КОРОНАВІРУСУ | КОРИСНІ ПОРАДИ |</a></h3>
+									<p>Хай бро, сьогодні я вам розкажу як боротися з коронавірусом, що робити, якщо ви ним заразилися...</p>
+									<div>
+										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
+									</div>
+
+								<!-- END .item -->
+								</div>
+
+								<!-- BEGIN .item -->
+								<div class="item">
+									
+									<span class="article-image-out">
+										<span class="image-comments"><span>21</span></span>
+										<span class="article-image">
+											<span class="nth1 strike-tooltip" title="Прочитати">
+												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
+											</span>
+											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
+												<a href="#"><i class="fa fa-plus"></i></a>
+											</span>
+											<a href="rewiew-single.html"><img src="images/photos/image-9.jpg" alt="" title="" /></a>
+										</span>
+									</span>
+									<h3><a href="rewiew-single.html">Ми відкрилися!!!!</a></h3>
+									<p>Тепер ми на постійному хостингу від компанії Git Hub. Не забувайте підписатися на наш Facebook i Youtube канали...</p>
+									<div>
+										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
+									</div>
+								<!-- END .item -->
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+					
+					<!-- BEGIN #sidebar -->
+					<div id="sidebar">
+						
+				
+						<!-- BEGIN .panel -->
+						<div class="panel">
+							<h2>Contact info</h2>
+							<div class="panel-content">
+								
+								<div>
+									<h4>Our emails</h4>
+				
+									<a href="mailto:s25416@pjwstk.edu.pl" class="icon-line">
+									<i class="fa fa-comment"></i><span>s25416@pjwstk.edu.pl</span>
+								</a>
+			
+								<span class="icon-line">
+									<a href="mailto:s24379@pjwstk.edu.pl" class="icon-line">
+									<i class="fa fa-comment"></i><span>s24379@pjwstk.edu.pl</span>
+									</a>
+								</span>
+								</div>
+								
+							</div>
+						<!-- END .panel -->
+						</div>
+						
+						<!-- BEGIN .panel -->
+						<div class="panel">
+							<h2> Tags Cloud</h2>
+							<div class="panel-content">
+								
+								<div class="tagcloud">
+								<a href="#">Teg1</a><a href="#">Teg2</a><a href="#">Teg3</a><a href="#">GTA V</a><a href="#">Teg4</a><a href="#">Teg5</a><a href="#">Teg6</a><a href="#">Teg7</a><a href="#">Teg8</a><a href="#">Teg9</a><a href="#">Teg10</a><a href="#">Teg11</a><a href="#">Teg12</a><a href="#">Teg13</a><a href="#">Teg14</a><a href="#">Teg15</a><a href="#">Teg16</a><a href="#">Teg18</a><a href="#">Teg20</a>
+							</div>
+								
+							</div>
+						<!-- END .panel -->
+						</div>
+					<!-- END #sidebar -->
+					</div>
+					
+					<div class="clear-float"></div>
+					
+				</div>
+			</section>
+		<!-- END #top-layer -->
+		</div>
+			
+		<div class="clear-float"></div>
+		
+		<div class="wrapper">
+			<!-- BEGIN .footer -->
+			<div class="footer">
+
+				<div class="footer-top"></div>
+				
+				<div class="footer-content">
+
+
+						
+					<!-- BEGIN .panel -->
+					<div class="panel">
+						<h2>Contact info</h2>
+						<div class="panel-content">
+							
+							<div>
+								<h4>If you want to contact us</h4>
+								<p>here our Emails</p>
+
+								<a href="mailto:s24379@pjwstk.edu.pl" class="icon-line">
+                                    <i class="fa fa-comment"></i><span>s24379@pjwstk.edu.pl</span>
+								</a>
+			                     <a href="mailto:s25416@pjwstk.edu.pl" class="icon-line">
+									<i class="fa fa-comment"></i><span>s25416@pjwstk.edu.pl</span>
+								</a>
+                                <p>Also here our GitHub link</p>
+                                <a href="https://github.com/AntonMakhniuk/PPY_Project_2023" class="icon-line">
+									<i class="fa fa-github"></i><span>GitHub link</span>
+								</a>
+							</div>
+							
+						</div>
+					<!-- END .panel -->
+					</div>
+					
+					<!-- BEGIN .panel -->
+					<div class="panel">
+						<h2>Tags Cloud</h2>
+						<div class="panel-content">
+							
+							<div class="tagcloud">
+								<a href="#">Teg1</a><a href="#">Teg2</a><a href="#">Teg3</a><a href="#">GTA V</a><a href="#">Teg4</a><a href="#">Teg5</a><a href="#">Teg6</a><a href="#">Teg7</a><a href="#">Teg8</a><a href="#">Teg9</a><a href="#">Teg10</a><a href="#">Teg11</a><a href="#">Teg12</a><a href="#">Teg13</a><a href="#">Teg14</a><a href="#">Teg15</a><a href="#">Teg16</a><a href="#">Teg18</a><a href="#">Teg20</a>
+							</div>
+							
+						</div>
+					<!-- END .panel -->
+					</div>
+
+				</div>
+
+				<div class="footer-bottom">
+					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
+					<div class="right">
+						<ul>
+							<li><a href="index.html">Home page</a></li>
+							<li><a href="about.html">About us</a></li>
+						</ul>
+					</div>
+					<div class="clear-float"></div>
+				</div>
+				
+			<!-- END .footer -->
+			</div>
+		</div>
+		<script type='text/javascript' src='jscript/jquery-1.11.2.min.js'></script>
+		<script type='text/javascript' src='jscript/modernizr.custom.50878.js'></script>
+		<script type='text/javascript' src='jscript/iscroll.js'></script>
+		<script type='text/javascript' src='jscript/dat-menu.js'></script>
+		<script type='text/javascript'>
+			var strike_featCount = 4;
+			var strike_autostart = true;
+			var strike_autoTime = 7000;
+		</script>
+		<script type='text/javascript' src='jscript/theme-script.js'></script>
+	<script>
+		function myFunction() {
+			var element = document.body;
+			element.classList.toggle("dark-mode");
+		}
+	</script>
+	</body>
+</html>

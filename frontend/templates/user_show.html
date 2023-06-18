@@ -53,8 +53,8 @@
 <div class="container">
     <h1>User Show</h1>
     <form action="/get-users/{user_id}" method="get">
-    <h2>User ID: {{ user_id }}</h2>
-    <p>User Data: {{ user }}</p>
+    <h2>User ID: {{ user.id }}</h2>
+    <p>User Data: {{ user.login }}</p>
 
     <h2>User Comments</h2>
     <ul>

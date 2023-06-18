@@ -11,6 +11,7 @@ from backend.routers import artworks as artworks_router
 from backend.routers import comments as comments_router
 from backend.routers import reviews as reviews_router
 from backend.routers import users as users_router
+from frontend.routes import artworks as artwork_route
 
 app = FastAPI(
     on_startup=[lambda: metadata.create_all(bind=db_state.engine)],

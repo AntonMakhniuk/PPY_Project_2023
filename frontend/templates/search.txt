@@ -1,0 +1,54 @@
+<div class="search hidden">
+  <div class="search__container">
+      <div class="search__inner autocomplete">
+        <div class="search__input-wrap">
+        <div class="search__icon search__icon_left">
+          <i class="fa fa-search"></i>
+        </div>
+          <input type="text" class="search__input form__input autocomplete__input" placeholder="Поиск Пользователя">
+          <div class="search__icon search__icon_right search__icon_close" data-search-toggle="">
+            <svg><use xlink:href="#icon-close"></use></svg>
+          </div>
+          <div class="search__icon search__icon_right search__icon_loader">
+            <div class="loader-circle loader-circle_small"></div>
+          </div>
+        </div>
+        <div class="search__types">
+                              <div class="search__type" data-term="Манги" data-type="manga" data-url="https://mangalib.me/search?type=manga">Манга</div>
+                                                  <div class="search__type" data-term="Персоны" data-type="author" data-url="https://mangalib.me/search?type=people">Персона</div>
+                    <div class="search__type" data-term="Издателя" data-type="publisher" data-url="https://mangalib.me/search?type=publisher">Издатель</div>
+                    <div class="search__type" data-term="Переводчика" data-type="team" data-url="https://mangalib.me/search?type=team">Переводчик</div>
+                  <div class="search__type search__type_active" data-term="Пользователя" data-type="user" data-url="https://mangalib.me/search?type=user">Пользователь</div>
+        </div>
+
+        <div class="search__suggestions-wrap">
+          <div class="search__suggestions autocomplete__suggestions"></div>
+        </div>
+      </div>
+  </div>
+</div>
+		<div class="search">
+			<div class="search__container">
+				<div class="search__inner autocomplete">
+					<div class="search__input-wrap">
+						<a class="search__icon search__icon_left">
+							<i class="fa fa-search"></i>
+						</a>
+						<input type="text" class="search__input form__input autocomplete__input" placeholder="Поиск Пользователя">
+						<div class="search__icon search__icon_right search__icon_close" data-search-toggle="">
+							<svg><use xlink:href="#icon-close"></use></svg>
+						</div>
+						<div class="search__icon search__icon_right search__icon_loader">
+							<div class="loader-circle loader-circle_small"></div>
+						</div>
+					</div>
+					<div class="search__types">
+						<div class="search__type" data-term="Artworks" data-type="artwork" data-url="#">Artworks</div>
+					</div>
+
+					<div class="search__suggestions-wrap">
+						<div class="search__suggestions autocomplete__suggestions"></div>
+					</div>
+				</div>
+			</div>
+		</div>
