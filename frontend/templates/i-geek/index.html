@@ -121,7 +121,7 @@
 			<div id="header-top">
 				<div class="wrapper">
 					<ul class="right">
-						
+
 						<li><a href="https://github.com/AntonMakhniuk/PPY_Project_2023" target="_blank"><i class="fa fa-github"></i></a></li>
 						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
 					</ul>
@@ -135,25 +135,21 @@
 
 				<header id="header">
 					<div id="menu-bottom">
-						<!-- <nav id="menu" class="main-menu width-fluid"> -->
 						<nav id="menu" class="main-menu">
 							<div class="blur-before"></div>
-							<a href="index.html" class="header-logo left"><img src="images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="/" class="header-logo left"><img src="images/logo.png" class="logo" alt="Revelio" title="" /></a>
 							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
 							<ul class="load-responsive" rel="Main menu">
-								<li><a href="review.html"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
-									<ul class="sub-menu">
-										<li><a href="rewiew-single.html">review info</a></li>
-										<li><a href="full-width.html">review</a></li>
-									</ul>
+								<li><a href="/get-reviews"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
+
 								</li>
 								<li><a><span id="search-link" title="Search"><i class="fa fa-search"></i> Search</span></a>
 
 								</li>
-								<li><a href="shortcodes.html"><span><i class="fa fa-puzzle-piece"></i><strongshortcodes></strongshortcodes></strong></span></a>
+								<li><a ><span><i class="fa fa-paint-brush"></i>some</span></a>
 									<ul class="sub-menu">
-										<li><a href="signup.html">signup</a></li>
-										<li><a href="artworks-single.html">art-single</a></li>
+										<li><a href="/get-categories">category's</a></li>
+										<li><a href="/get-artworks">artworks</a></li>
 									</ul>
 								</li>
 								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>forum</strong></span></a>
@@ -164,7 +160,7 @@
 										<li><a href="forum-create.html">orum-create</a></li>
 									</ul>
 								</li>
-								<li><a href="user-single.html"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
+								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
 
 								</li>
 							</ul>
@@ -178,233 +174,45 @@
 						
 
 						<h2><span>Categories</span></h2>
-						<h3>Will be changed to list of some categories</h3>
 						<div class="content-padding">
 							<div class="home-article left">
 								<span class="article-image-out">
-									<span class="image-comments"><span>21</span></span>
 									<span class="article-image">
-										<span class="nth1 strike-tooltip" title="Прочитати">
-											<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
+										<span class="nth1 strike-tooltip" title="go to git">
+											<a href="https://github.com/AntonMakhniuk/PPY_Project_2023"><i class="fa fa-eye"></i></a>
 										</span>
-										<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
-											<a href="#"><i class="fa fa-plus"></i></a>
-										</span>.
-										<a href="rewiew-single.html"><img src="images/photos/image-9.jpg" alt="" title="" /></a>
+
+										<a href="https://github.com/AntonMakhniuk/PPY_Project_2023"><img src="images/photos/image-9.jpg" alt="" title="" /></a>
 									</span>
 								</span>
-								<h3><a href="rewiew-single.html">We working!!!!</a></h3>
+								<h3><a href="https://github.com/AntonMakhniuk/PPY_Project_2023">We working!!!!</a></h3>
 								<p>Now our project is located on GitHub you can enter it by link bellow.</p>
 								<div>
 									<a href="https://github.com/AntonMakhniuk/PPY_Project_2023" class="defbutton"><i class="fa fa-reply"></i>go to the git</a>
 								</div>
 							</div>
 							<div class="home-article right">
+								<form action="/get-categories" method="get">
 								<ul>
+									{% for category in categorys %}
 									<li>
-										<a href="rewiew-single.html">
-											<span class="image-comments"><span>21</span></span>
-											<img src="images/photos/image-10.jpg" alt="" title="" />
-											<strong>post1</strong>
-											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
+										<a href="/get-categories/{category_id}">
+											<strong>{{category.name}}</strong>
+											<span class="a-txt">click for more.</span>
 										</a>
 									</li>
-									<li>
-										<a href="rewiew-single.html">
-											<span class="image-comments inactive"><span>200</span></span>
-											<img src="images/photos/image-11.jpg" alt="" title="" />
-											<strong>Cyberpunk 2077 перенесли ще на два місяці.</strong>
-											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
-										</a>
-									</li>
-									<li>
-										<a href="rewiew-single.html">
-											<span class="image-comments"><span>10</span></span>
-											<img src="images/photos/image-12.jpg" alt="" title="" />
-											<strong>Голова Bethesda розповів про екранізацію Fallout</strong>
-											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
-										</a>
-									</li>
-									<li>
-										<a href="rewiew-single.html">
-											<span class="image-comments"><span>9</span></span>
-											<img src="images/photos/image-13.jpg" alt="" title="" />
-											<strong>Наш плейлист без ап тепер доступний на нашому сайті</strong>
-											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
-										</a>
-									</li>
-									<li>
-										<a href="rewiew-single.html">
-											<span class="image-comments"><span>3</span></span>
-											<img src="images/photos/image-14.jpg" alt="" title="" />
-											<strong>ФЕНДОМ на основі Вікіа — це безкоштовний сервіс вікі-хостингу...</strong>
-											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
-										</a>
-									</li>
-									<li>
-										<a href="rewiew-single.html">
-											<span class="image-comments"><span>0</span></span>
-											<img src="images/photos/image-15.jpg" alt="" title="" />
-											<strong>Гру Minecraft придбали понад 200 мільйонів гравців</strong>
-											<span class="a-txt">Тицьніть, щоб дізнатись більше.</span>
-										</a>
-									</li>
+									{% endfor %}
 								</ul>
 
 								<div>
-									<a href="#" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
+									<a href="/get-categories/{category_id}" class="defbutton"><i class="fa fa-reply"></i>go to category</a>
 								</div>
-								
+								</form>
 							</div>
 							<div class="clear-float"></div>
 						</div>
 
-						<h2><span>Останнє</span></h2>
-						<div class="content-padding">
-							<div class="grid-articles">
 
-								<!-- BEGIN .item -->
-								<div class="item">
-									
-									<span class="article-image-out">
-										<span class="image-comments"><span>21</span></span>
-										<span class="article-image">
-											<span class="nth1 strike-tooltip" title="Прочитати">
-												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
-											</span>
-											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
-												<a href="#"><i class="fa fa-plus"></i></a>
-											</span>
-											<a href="https://www.youtube.com/watch?v=hxUyNVEuJ5k&t=74s"><img src="images/photos/image-25.jpg" alt="" title="" /></a>
-										</span>
-									</span>
-									<h3><a href="rewiew-single.html">Як Отримати безкоштовно GTA V</a></h3>
-									<p>Хай бро, і сьогодні я вам розкажу, як отримати ГТА 5 Безкоштовно. Для цього нам треба завантажити таку програму як...</p>
-									<div>
-										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
-									</div>
-
-								<!-- END .item -->
-								</div>
-
-								<!-- BEGIN .item -->
-								<div class="item">
-									
-									<span class="article-image-out">
-										<span class="image-comments"><span>21</span></span>
-										<span class="article-image">
-											<span class="nth1 strike-tooltip" title="Прочитати">
-												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
-											</span>
-											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
-												<a href="#"><i class="fa fa-plus"></i></a>
-											</span>
-											<a href="https://www.youtube.com/watch?v=EgI0V9qeiTw&t=1s"><img src="images/photos/image-26.jpg" alt="" title="" /></a>
-										</span>
-									</span>
-									<h3><a href="rewiew-single.html">Як зробити студійне звучання мікрофону</a></h3>
-									<p>Хай бро, і сьогодні я вам розкажу, як прокачати ваш мікрофон до рівня студійного. Для цього треба зробити кілька простих речей: ...</p>
-									<div>
-										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
-									</div>
-
-								<!-- END .item -->
-								</div>
-
-								<!-- BEGIN .item -->
-								<div class="item">
-									
-									<span class="article-image-out">
-										<span class="image-comments"><span>21</span></span>
-										<span class="article-image">
-											<span class="nth1 strike-tooltip" title="Прочитати">
-												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
-											</span>
-											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
-												<a href="#"><i class="fa fa-plus"></i></a>
-											</span>
-											<a href="https://www.youtube.com/watch?v=9Cgb2h4PQLg&t=39s"><img src="images/photos/image-27.jpg" alt="" title="" /></a>
-										</span>
-									</span>
-									<h3><a href="https://www.youtube.com/watch?v=9Cgb2h4PQLg&t=36s">ПАК МУЗИКИ | 2020 | SUMMER EDITION </a></h3>
-									<p>Хай бро, сьогодні у нас пак музики summer edition, який має допомогти вам у створенні ваших прекрасних відео!!!...</p>
-									<div>
-										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
-									</div>
-
-								<!-- END .item -->
-								</div>
-
-								<!-- BEGIN .item -->
-								<div class="item">
-									
-									<span class="article-image-out">
-										<span class="image-comments"><span>21</span></span>
-										<span class="article-image">
-											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
-												<a href="#"><i class="fa fa-plus"></i></a>
-											</span>
-											<a href="rewiew-single.html"><img src="images/photos/image-28.jpg" alt="" title="" /></a>
-										</span>
-									</span>
-									<h3><a href="https://www.youtube.com/watch?v=DFCNKStK6y0"> МАНІФЕСТ - УКРАЇНСЬКИЙ ЮТУБ</a></h3>
-									<p>Хай бро, сьогодні ми поговоримо про Маніфест - платформу для розвитку україномовного ютубу, який потихенько розвивається...</p>
-									<div>
-										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
-									</div>
-
-								<!-- END .item -->
-								</div>
-
-								<!-- BEGIN .item -->
-								<div class="item">
-									
-									<span class="article-image-out">
-										<span class="image-comments"><span>21</span></span>
-										<span class="article-image">
-											<span class="nth1 strike-tooltip" title="Прочитати">
-												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
-											</span>
-											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
-												<a href="#"><i class="fa fa-plus"></i></a>
-											</span>
-											<a href="rewiew-single.html"><img src="images/photos/image-29.jpg" alt="" title="" /></a>
-										</span>
-									</span>
-									<h3><a href="https://www.youtube.com/watch?v=QoOfIWNHR0k">| КОРОНАВІРУС | ЯК ВИЖИТИ ПІД ЧАС КОРОНАВІРУСУ | КОРИСНІ ПОРАДИ |</a></h3>
-									<p>Хай бро, сьогодні я вам розкажу як боротися з коронавірусом, що робити, якщо ви ним заразилися...</p>
-									<div>
-										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
-									</div>
-
-								<!-- END .item -->
-								</div>
-
-								<!-- BEGIN .item -->
-								<div class="item">
-									
-									<span class="article-image-out">
-										<span class="image-comments"><span>21</span></span>
-										<span class="article-image">
-											<span class="nth1 strike-tooltip" title="Прочитати">
-												<a href="rewiew-single.html"><i class="fa fa-eye"></i></a>
-											</span>
-											<span class="nth2 strike-tooltip" title="Зберегти до Переглянути пізніше">
-												<a href="#"><i class="fa fa-plus"></i></a>
-											</span>
-											<a href="rewiew-single.html"><img src="images/photos/image-9.jpg" alt="" title="" /></a>
-										</span>
-									</span>
-									<h3><a href="rewiew-single.html">Ми відкрилися!!!!</a></h3>
-									<p>Тепер ми на постійному хостингу від компанії Git Hub. Не забувайте підписатися на наш Facebook i Youtube канали...</p>
-									<div>
-										<a href="rewiew-single.html" class="defbutton"><i class="fa fa-reply"></i>Дізнатись більше</a>
-									</div>
-								<!-- END .item -->
-								</div>
-
-							</div>
-						</div>
 
 					</div>
 					
@@ -438,13 +246,15 @@
 						<!-- BEGIN .panel -->
 						<div class="panel">
 							<h2> Tags Cloud</h2>
+							<form action="/get-tags" method="get">
 							<div class="panel-content">
-								
+								{% for tag in tags %}
 								<div class="tagcloud">
-								<a href="#">Teg1</a><a href="#">Teg2</a><a href="#">Teg3</a><a href="#">GTA V</a><a href="#">Teg4</a><a href="#">Teg5</a><a href="#">Teg6</a><a href="#">Teg7</a><a href="#">Teg8</a><a href="#">Teg9</a><a href="#">Teg10</a><a href="#">Teg11</a><a href="#">Teg12</a><a href="#">Teg13</a><a href="#">Teg14</a><a href="#">Teg15</a><a href="#">Teg16</a><a href="#">Teg18</a><a href="#">Teg20</a>
+									<a href="#">{{tag.name}}</a>
+								</div>
+								{% endfor %}
 							</div>
-								
-							</div>
+							</form>
 						<!-- END .panel -->
 						</div>
 					<!-- END #sidebar -->
@@ -497,13 +307,15 @@
 					<!-- BEGIN .panel -->
 					<div class="panel">
 						<h2>Tags Cloud</h2>
-						<div class="panel-content">
-							
-							<div class="tagcloud">
-								<a href="#">Teg1</a><a href="#">Teg2</a><a href="#">Teg3</a><a href="#">GTA V</a><a href="#">Teg4</a><a href="#">Teg5</a><a href="#">Teg6</a><a href="#">Teg7</a><a href="#">Teg8</a><a href="#">Teg9</a><a href="#">Teg10</a><a href="#">Teg11</a><a href="#">Teg12</a><a href="#">Teg13</a><a href="#">Teg14</a><a href="#">Teg15</a><a href="#">Teg16</a><a href="#">Teg18</a><a href="#">Teg20</a>
+						<form action="/get-tags" method="get">
+							<div class="panel-content">
+								{% for tag in tags %}
+								<div class="tagcloud">
+									<a href="/get-tags/{tag_id}">{{tag.name}}</a>
+								</div>
+								{% endfor %}
 							</div>
-							
-						</div>
+							</form>
 					<!-- END .panel -->
 					</div>
 
@@ -513,7 +325,7 @@
 					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
 					<div class="right">
 						<ul>
-							<li><a href="index.html">Home page</a></li>
+							<li><a href="/">Home page</a></li>
 							<li><a href="about.html">About us</a></li>
 						</ul>
 					</div>

@@ -108,80 +108,48 @@
 			<div id="header-top">
 				<div class="wrapper">
 					<ul class="right">
-						<li><a href="https://www.facebook.com/groups/bomba.Production" target="_blank"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="https://www.youtube.com/c/BOMBAProductionA" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
-						<li><a href="#" target="_blank"><i class="fa fa-twitch"></i></a></li>
-						<li><a href="#" target="_blank"><i class="fa fa-steam"></i></a></li>
-					</ul>
-					<ul class="load-responsive" rel="Top menu">
-						<li><a href="podcasts.html">Подкасти</a></li>
 
-						<li><a href="#drop-the-bass">Прочитайте пізніше<small>2</small></a>
-							<div class="drop">
-								<div class="notify-header">Статті, які я повинен прочитати пізніше</div>
-								<!-- <div class="nofify-empty">
-									<i class="fa fa-folder-open-o"></i>
-									<b>No articles here yet</b>
-									<span>You can save articles to read them later</span>
-								</div> -->
-								<ol class="notify-list">
-									<li>
-										<a href="rewiew-single.html" class="notify-content">
-											<span class="article-thumb"><img src="images/photos/image-36.png" alt="" /></span>
-											<span class="notify-head">
-												<span class="notify-user"><b>Оновлення Сайту</b></span>
-											</span>
-											<span class="notify-text">Тицніть, щоб дізнатися більше</span>
-											<span class="notify-date">11:22, Червень, 2020</span>
-										</a>
-									</li>
-									<li>
-										<a href="rewiew-single.html" class="notify-content">
-											<span class="article-thumb"><img src="images/photos/image-35.jpg" alt="" /></span>
-											<span class="notify-head">
-												<span class="notify-user"><b>Нове відео на каналі</b></span>
-											</span>
-											<span class="notify-text">Тицніть, щоб дізнатися більше</span>
-											<span class="notify-date">11:22, Червень, 2020</span>
-										</a>
-									</li>
-								</ol>
-								<div class="notify-footer"><a href="#clear-read-later">Очистити список</a></div>
-							</div>
-						</li>
-						<li><a href="login.html">Логін</a></li>
+						<li><a href="https://github.com/AntonMakhniuk/PPY_Project_2023" target="_blank"><i class="fa fa-github"></i></a></li>
+						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
+					</ul>
+					<ul class="load-responsive" rel="Menu">
+						<li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">signup</a></li>
 					</ul>
 				</div>
 			</div>
 			<section id="content">
+
 				<header id="header">
 					<div id="menu-bottom">
-						<!-- <nav id="menu" class="main-menu width-fluid"> -->
 						<nav id="menu" class="main-menu">
 							<div class="blur-before"></div>
-							<a href="index.html" class="header-logo left"><img src="images/logo.png" class="logo" alt="Revelio" title="" /></a>
-							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Показати меню</a>
+							<a href="/" class="header-logo left"><img src="images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
 							<ul class="load-responsive" rel="Main menu">
-								<li><a href="review.html"><span><i class="fa fa-comment"></i><strong>Блог</strong></span></a>
-									<ul class="sub-menu">
-										<li><a href="rewiew-single.html">Трішки про блог</a></li>
-										<li><a href="full-width.html">Блог</a></li>
-									</ul>
-								</li>
-
-								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>Форум</strong></span></a>
-									<ul class="sub-menu">
-										<li><a href="forum.html">Форум</a></li>
-										<li><a href="forum-threads.html">Список тем</a></li>
-										<li><a href="forum-single.html">Допомога</a></li>
-										<li><a href="forum-create.html">Створити тему</a></li>
-									</ul>
-								</li>
-								<li><a href="user-single.html"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
+								<li><a href="/get-reviews"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
 
 								</li>
-								<!-- <li class="no-icon"><a href="#"><strong>Without icon</strong></a></li> -->
+								<li><a><span id="search-link" title="Search"><i class="fa fa-search"></i> Search</span></a>
+
+								</li>
+								<li><a ><span><i class="fa fa-paint-brush"></i>some</span></a>
+									<ul class="sub-menu">
+										<li><a href="/get-categories">category's</a></li>
+										<li><a href="/get-artworks">artworks</a></li>
+									</ul>
+								</li>
+								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>forum</strong></span></a>
+									<ul class="sub-menu">
+										<li><a href="forum.html">forum</a></li>
+										<li><a href="forum-threads.html">forum-threads</a></li>
+										<li><a href="forum-single.html">forum-single</a></li>
+										<li><a href="forum-create.html">orum-create</a></li>
+									</ul>
+								</li>
+								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
+
+								</li>
 							</ul>
 						</nav>
 					</div>
@@ -346,13 +314,15 @@
 					<!-- BEGIN .panel -->
 					<div class="panel">
 						<h2>Tags Cloud</h2>
-						<div class="panel-content">
-
-							<div class="tagcloud">
-								<a href="#">Teg1</a><a href="#">Teg2</a><a href="#">Teg3</a><a href="#">GTA V</a><a href="#">Teg4</a><a href="#">Teg5</a><a href="#">Teg6</a><a href="#">Teg7</a><a href="#">Teg8</a><a href="#">Teg9</a><a href="#">Teg10</a><a href="#">Teg11</a><a href="#">Teg12</a><a href="#">Teg13</a><a href="#">Teg14</a><a href="#">Teg15</a><a href="#">Teg16</a><a href="#">Teg18</a><a href="#">Teg20</a>
+						<form action="/get-tags" method="get">
+							<div class="panel-content">
+								{% for tag in tags %}
+								<div class="tagcloud">
+									<a href="/get-tags/{tag_id}">{{tag.name}}</a>
+								</div>
+								{% endfor %}
 							</div>
-
-						</div>
+							</form>
 					<!-- END .panel -->
 					</div>
 
@@ -362,7 +332,7 @@
 					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
 					<div class="right">
 						<ul>
-							<li><a href="index.html">Home page</a></li>
+							<li><a href="/">Home page</a></li>
 							<li><a href="about.html">About us</a></li>
 						</ul>
 					</div>

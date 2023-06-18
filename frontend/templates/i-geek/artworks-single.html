@@ -110,10 +110,9 @@
 					<ul class="right">
 
 						<li><a href="https://github.com/AntonMakhniuk/PPY_Project_2023" target="_blank"><i class="fa fa-github"></i></a></li>
-						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme=""><i class="fa fa-moon-o"></i></a></li>
+						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
 					</ul>
 					<ul class="load-responsive" rel="Menu">
-
 						<li><a href="login.html">Login</a></li>
                         <li><a href="signup.html">signup</a></li>
 					</ul>
@@ -123,25 +122,21 @@
 
 				<header id="header">
 					<div id="menu-bottom">
-						<!-- <nav id="menu" class="main-menu width-fluid"> -->
 						<nav id="menu" class="main-menu">
 							<div class="blur-before"></div>
-							<a href="index.html" class="header-logo left"><img src="images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="/" class="header-logo left"><img src="images/logo.png" class="logo" alt="Revelio" title="" /></a>
 							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
 							<ul class="load-responsive" rel="Main menu">
-								<li><a href="review.html"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
-									<ul class="sub-menu">
-										<li><a href="rewiew-single.html">review info</a></li>
-										<li><a href="full-width.html">review</a></li>
-									</ul>
+								<li><a href="/get-reviews"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
+
 								</li>
 								<li><a><span id="search-link" title="Search"><i class="fa fa-search"></i> Search</span></a>
 
 								</li>
-								<li><a href="shortcodes.html"><span><i class="fa fa-puzzle-piece"></i><strongshortcodes></strongshortcodes></strong></span></a>
+								<li><a ><span><i class="fa fa-paint-brush"></i>some</span></a>
 									<ul class="sub-menu">
-										<li><a href="signup.html">signup</a></li>
-										<li><a href="artworks-single.html">art-single</a></li>
+										<li><a href="/get-categories">category's</a></li>
+										<li><a href="/get-artworks">artworks</a></li>
 									</ul>
 								</li>
 								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>forum</strong></span></a>
@@ -152,7 +147,7 @@
 										<li><a href="forum-create.html">orum-create</a></li>
 									</ul>
 								</li>
-								<li><a href="user-single.html"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
+								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
 
 								</li>
 							</ul>
@@ -161,14 +156,14 @@
 					
 				</header>
 				<div id="main-box" class="full-width">
+					<form action="/get-artworks/{artwork_id}" method="get">
 					
 					<div id="main" itemscope="" itemtype="http://data-vocabulary.org/Review">
 						<div class="game-info-left">
-							<img itemprop="image" src="images/posters/2351232-tomb_raider.jpg" class="game-poster" alt="" />
+
+							<img itemprop="image" src="{{artwork.poster_url}}" class="game-poster" alt="images/posters/2351232-tomb_raider.jpg" />
 							<div class="game-info-details">
-								<div class="game-info-buttons">
-									<a href="#" class="defbutton green"><i class="fa fa-bell"></i>Follow News</a>
-								</div>
+
 								<div class="game-info-rating">
 									<h3>Revelio Review</h3>
 									<hr />
@@ -176,43 +171,29 @@
 									<div class="rating-stars">
 										<div class="rating-stars-inner" style="width: 90%;"></div>
 									</div>
-									<a href="rewiew-single.html" class="defbutton"><i class="fa fa-file-text-o"></i>Read Review</a>
+									<a href="/get-artworks/{artwork_id}/reviews" class="defbutton"><i class="fa fa-file-text-o"></i>Read Reviews</a>
 								</div>
 								<div class="game-info-buttons">
-									<a href="games-single-shop.html" class="defbutton"><i class="fa fa-shopping-cart"></i>Buy game starting from <span class="pricetag">55 &euro;</span></a>
-									<a href="#" class="defbutton"><i class="fa fa-gamepad"></i>I have played</a>
+									<a href="artworks-single-download.html" class="defbutton"><i class="fa fa-shopping-cart"></i>Download</a>
 								</div>
 								<div class="game-info-graph">
 									<div>
 										<span>Release Date</span>
-										<strong itemprop="datePublished" content="2013-03-05">5.March 2013</strong>
+										<strong itemprop="datePublished" >{{artwork.release_date}}</strong>
 									</div>
 									<div>
-										<span>Developer</span>
-										<strong>Crystal Dynamics</strong>
-									</div>
-									<div>
-										<span>Publisher</span>
-										<strong>Square Enix Ltd</strong>
-									</div>
-									<div>
-										<span>Genre</span>
-										<strong itemprop="applicationCategory"><a href="artworks.html">Platformers</a>, <a href="artworks.html">Action-Adventure</a></strong>
+										<span>Tags</span>
+										<form action="/get-artworks/{artwork_id}/tags" method="get">
+											{% for tag in tags %}
+										<strong itemprop="applicationCategory"><a href="/get-tags/{tag_id}">{{tag.name}}</a></strong>
+											{% endfor %}
+										</form>
 									</div>
 									<meta itemprop="reviewer" content="Datcouch.com">
 								</div>
 								<div class="pegi">
 									<img src="images/pegi/pegi-18.gif" class="pegi-age left strike-tooltip" title="Recomended 18+" alt="" />
-									<div class="pegi-desc">
-										<img src="images/pegi/bad-language.gif" class="pegi-tool strike-tooltip" title="Bad language" alt="" />
-										<img src="images/pegi/discrimination.gif" class="pegi-tool pegi-disabled" alt="" />
-										<img src="images/pegi/drugs.gif" class="pegi-tool pegi-disabled" alt="" />
-										<img src="images/pegi/fear.gif" class="pegi-tool pegi-disabled" alt="" />
-										<img src="images/pegi/gambling.gif" class="pegi-tool pegi-disabled" alt="" />
-										<img src="images/pegi/online.gif" class="pegi-tool strike-tooltip" title="Multiplater" alt="" />
-										<img src="images/pegi/sex.gif" class="pegi-tool pegi-disabled" alt="" />
-										<img src="images/pegi/violence.gif" class="pegi-tool strike-tooltip" title="Violence" alt="" />
-									</div>
+
 									<div class="clear-float"></div>
 								</div>
 							</div>
@@ -222,29 +203,16 @@
 							<!-- BEGIN .game-menu -->
 							<div class="game-menu" style="border-bottom: 5px solid #921913;">
 								<div class="game-overlay-info">
-									<h1 itemprop="itemreviewed">Tomb Raider <span>(2013)</span></h1>
-									<span>
-										<a href="artworks.html">PlayStation 2</a>
-										<a href="artworks.html">PlayStation 3</a>
-										<a href="artworks.html">PlayStation 4</a>
-										<a href="artworks.html">Xbox</a>
-										<a href="artworks.html">Xbox 360</a>
-										<a href="artworks.html">Xbox One</a>
-										<a href="artworks.html">Nintendo Wii</a>
-									</span>
+									<h1 itemprop="itemreviewed">{{artwork.title}}</h1>
+
 								</div>
 								<ul>
-									<li class="active" style="background-color: #921913;"><a href="artworks-single.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Information</a></li>
-									<li><a href="games-single-shop.html"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Download</a></li>
+									<li class="active" style="background-color: #921913;"><a href="/get-artworks/{artwork_id}"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Information</a></li>
+									<li><a href="artworks-single-download.html"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Download</a></li>
 								</ul>
 							<!-- END .game-menu -->
 							</div>
-
-
-
-
-
-							<h2><span>Comments (3)</span></h2>
+							<h2><span>Comments</span></h2>
 							<!-- BEGIN .content-padding -->
 							<div class="content-padding">
 								
@@ -252,6 +220,8 @@
 
 									<!-- BEGIN #comments -->
 									<ol id="comments">
+										 <form action="/get-artworks/{artwork_id}/comments" method="get">
+											 {% for comment in comments %}
 										<li>
 											<div class="comment-inner">
 												<div class="comment-avatar">
@@ -259,46 +229,16 @@
 												</div>
 												<div class="comment-content">
 													<div class="comment-header">
-														<h3><a href="#">DatCouch</a></h3>
+														<h3><a >{{comment.user_id.name}}</a></h3>
 													</div>
-													<p>Lorem ipsum dolor sit amet, ea rebum aeterno qui, cum tale dicta nihil id. Ex eam simul altera. Te sea labores persequeris. An suscipit menandri vel, est error nullam dictas ne. Debet instructior ea pri, vis singulis antiopam consulatu ex.</p>
-													<a class="comment-reply-link post-a" href="#"><i class="fa fa-comment"></i><strong>Reply</strong></a>
-													<span class="post-a"><i class="fa fa-calendar-o"></i> May 2, 2014</span>
-												</div>
-											</div>
-											<ul>
-												<li>
-													<div class="comment-inner">
-														<div class="comment-avatar">
-															<img src="http://1.gravatar.com/avatar/b1c65c520efb9520269584aae4323fae?s=73&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D73&amp;r=G" alt="DatCouch">
-														</div>
-														<div class="comment-content">
-															<div class="comment-header">
-																<h3><a href="#">DatCouch</a></h3>
-															</div>
-															<p>Lorem ipsum dolor sit amet, ea rebum aeterno qui, cum tale dicta nihil id. Ex eam simul altera. Te sea labores persequeris. An suscipit menandri vel, est error nullam dictas ne. Debet instructior ea pri, vis singulis antiopam consulatu ex.</p>
-															<a class="comment-reply-link post-a" href="#"><i class="fa fa-comment"></i><strong>Reply</strong></a>
-															<span class="post-a"><i class="fa fa-calendar-o"></i> May 2, 2014</span>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<div class="comment-inner">
-												<div class="comment-avatar">
-													<img src="http://1.gravatar.com/avatar/b1c65c520efb9520269584aae4323fae?s=73&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D73&amp;r=G" alt="DatCouch">
-												</div>
-												<div class="comment-content">
-													<div class="comment-header">
-														<h3><a href="#">DatCouch</a></h3>
-													</div>
-													<p>Lorem ipsum dolor sit amet, ea rebum aeterno qui, cum tale dicta nihil id. Ex eam simul altera. Te sea labores persequeris. An suscipit menandri vel, est error nullam dictas ne. Debet instructior ea pri, vis singulis antiopam consulatu ex.</p>
-													<a class="comment-reply-link post-a" href="#"><i class="fa fa-comment"></i><strong>Reply</strong></a>
-													<span class="post-a"><i class="fa fa-calendar-o"></i> May 2, 2014</span>
+													<p>{{comment.text}}</p>
+													<a class="like-button post-a" href="#"><i class="fa fa-hand-o-up"></i><strong>like</strong><span>{{comment.likes}}</span></a>
+													<a class="dislike-button post-a" href="#"><i class="fa fa-hand-o-down"></i><strong>dislike</strong><span>{{comment.dislikes}}</span></a>
 												</div>
 											</div>
 										</li>
+											 {% endfor %}
+										 </form>
 									<!-- #comment-## -->
 									</ol>
 									<div class="comments-pager"></div>
@@ -314,15 +254,7 @@
 													<input id="author" name="author" type="text" value="" size="30" aria-required="true" placeholder="Name">
 												</p>
 
-												<p class="form-email">
-													<label for="email">Email:<span class="required">*</span></label>
-													<input id="email" name="email" type="text" value="" size="30" aria-required="true" placeholder="Email">
-												</p>
 
-												<p class="form-website">
-													<label for="website">Website:</label>
-													<input id="website" name="url" type="text" value="" size="30" aria-required="true" placeholder="Website">
-												</p>
 												<p class="form-comment">
 													<label for="comment">Comment:<span class="required">*</span></label>
 													<textarea id="comment" name="comment" type="text" aria-required="true" placeholder="Comment Text"></textarea>
@@ -335,20 +267,14 @@
 											</form>
 										</div><!-- #respond -->
 									</div>
-					
 								</div>
-
 							<!-- END .content-padding -->
 							</div>
-
 						</div>
-
 						<div class="clear-float"></div>
-						
 					</div>
-					
-					<div class="clear-float"></div>
-					
+						<div class="clear-float"></div>
+					</form>
 				</div>
 			</section>
 			</div>
@@ -396,13 +322,15 @@
 					<!-- BEGIN .panel -->
 					<div class="panel">
 						<h2>Tags Cloud</h2>
-						<div class="panel-content">
-
-							<div class="tagcloud">
-								<a href="#">Teg1</a><a href="#">Teg2</a><a href="#">Teg3</a><a href="#">GTA V</a><a href="#">Teg4</a><a href="#">Teg5</a><a href="#">Teg6</a><a href="#">Teg7</a><a href="#">Teg8</a><a href="#">Teg9</a><a href="#">Teg10</a><a href="#">Teg11</a><a href="#">Teg12</a><a href="#">Teg13</a><a href="#">Teg14</a><a href="#">Teg15</a><a href="#">Teg16</a><a href="#">Teg18</a><a href="#">Teg20</a>
+						<form action="/get-tags" method="get">
+							<div class="panel-content">
+								{% for tag in tags %}
+								<div class="tagcloud">
+									<a href="/get-tags/{tag_id}">{{tag.name}}</a>
+								</div>
+								{% endfor %}
 							</div>
-
-						</div>
+							</form>
 					<!-- END .panel -->
 					</div>
 
@@ -412,12 +340,13 @@
 					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
 					<div class="right">
 						<ul>
-							<li><a href="index.html">Home page</a></li>
+							<li><a href="/">Home page</a></li>
 							<li><a href="about.html">About us</a></li>
 						</ul>
 					</div>
 					<div class="clear-float"></div>
 				</div>
+
 				
 			<!-- END .footer -->
 			</div>

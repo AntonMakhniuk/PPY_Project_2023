@@ -6,12 +6,13 @@ from fastapi.staticfiles import StaticFiles
 
 from backend.dependencies import close_db_state, db_state, metadata
 from backend.routers import artworks as artworks_router
+
 app = FastAPI(
     on_startup=[lambda: metadata.create_all(bind=db_state.engine)],
     on_shutdown=[lambda: close_db_state(db_state)],
 )
 tags_metadata = [
-{
+    {
         "name": "crud - artworks",
         "description": "CRUD operations for ARTWORK table (data for artworks)."
     }
@@ -104,6 +105,28 @@ def create_artworks_in_category(request: Request, category_id: int):
     response = requests.get(f"http://127.0.0.1:8000/categories/{category_id}/artworks", json=artwork_data)
     new_artwork = response.json()
     return templates.TemplateResponse("create_artwork.html", {"request": request, "artwork": new_artwork})
+
+
+@app.get("/get-artworks/{artwork_id}/tags")
+def get_tags_in_artwork(request: Request, artwork_id: int):
+    artwork_data = {
+        "name": "string",
+        "description": "string",
+        "id": 0,
+        "artworks": [
+            {
+                "title": "string",
+                "description": "string",
+                "poster_url": "string",
+                "release_date": "2023-06-18",
+                "age_rating": "string",
+                "star_rating": 0
+            }
+        ]
+    }
+    response = requests.get(f"http://127.0.0.1:8000/artworks/{artwork_id}/tags", json=artwork_data)
+    new_artwork = response.json()
+    return templates.TemplateResponse("artworks-single.html", {"request": request, "artwork": new_artwork})
 
 
 @app.post("/post-categories/{category_id}/artworks")
