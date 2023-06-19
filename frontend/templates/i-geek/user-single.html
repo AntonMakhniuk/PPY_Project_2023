@@ -113,7 +113,7 @@
 					</ul>
 					<ul class="load-responsive" rel="Menu">
 						<li><a href="login.html">Login</a></li>
-                        <li><a href="signup.html">signup</a></li>
+                        <li><a href="/make-users-form">signup</a></li>
 					</ul>
 				</div>
 			</div>
@@ -149,7 +149,7 @@
 				<div id="main-box" class="full-width">
 					
 					<div id="main">
-						
+						<form action="/get-users/{user_id}" method="get">
 						<!-- BEGIN .user-profile -->
 						<div class="user-profile">
 							
@@ -209,7 +209,7 @@
 											<h2 style="margin-left:-30px;"><span>Profile:</span></h2>
 											
 											<ul class="profile-info">
-												<form action="/get-users/{user_id}" method="get">
+
 												<li>
 													<span class="first">Name:</span>
 													<span class="last">{{user.id}}</span>
@@ -223,7 +223,7 @@
 													<span class="first">Registred:</span>
 													<span class="last">{{user.createdAt}}</span>
 												</li>
-												</form>
+
 											</ul>
 
 											<div class="clear-float"></div>
@@ -246,7 +246,7 @@
 
 						<!-- END .user-profile -->
 						</div>
-
+						</form>
 					</div>
 					
 					<div class="clear-float"></div>
@@ -315,7 +315,7 @@
 					<div class="right">
 						<ul>
 							<li><a href="/">Home page</a></li>
-							<li><a href="about.html">About us</a></li>
+							<li><a href="/about">About us</a></li>
 						</ul>
 					</div>
 					<div class="clear-float"></div>

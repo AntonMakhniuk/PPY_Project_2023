@@ -113,7 +113,7 @@
 					</ul>
 					<ul class="load-responsive" rel="Menu">
 						<li><a href="login.html">Login</a></li>
-                        <li><a href="signup.html">signup</a></li>
+                        <li><a href="/make-users-form">signup</a></li>
 					</ul>
 				</div>
 			</div>
@@ -149,7 +149,7 @@
 				<div id="main-box" class="full-width">
 					
 					<div id="main">
-						
+						<form action="/get-users/{user_id}/reviews" method="get">
 						<!-- BEGIN .user-profile -->
 						<div class="user-profile">
 							
@@ -159,9 +159,7 @@
 							<div class="profile-left-side">
 
 								<div class="the-profile-top">
-									<div class="profile-user-name">
-										<h1>Datcouch</h1>
-									</div>
+
 
 									<div class="avatar online">
 										<img src="images/avatar-13.jpg" class="setborder" alt="" />
@@ -201,38 +199,32 @@
 							<div class="profile-right-side">
 
 								<h2><span>My reviews</span></h2>
+								{% for review in reviews %}
 								<div class="content-padding">
 							
 									<div class="article-promo">
 										
 										<div class="article-content">
 											<div class="article-icons">
-												<a href="/get-users/{user_id}"><i class="fa fa-fire"></i>datcouch</a>
+												<a href="/get-users/{user_id}"><i class="fa fa-fire"></i>{{user.login}}</a>
 											</div>
-											<p>Has no atqui dictas iuvaret, ex suavitate voluptatum incorrupte eos. Nullam luptatum nominati ius voluptatum ea, nam omnium percipit et luptatum nominati ius ea...</p>
+											<p>{{review.text}}</p>
 											<a href="/get-reviews/{review_id}" class="defbutton"><i class="fa fa-reply"></i>Read full review</a>
 										</div>
 									</div>
 									
 									<div class="clear-float do-the-split"></div>
-									
-
-									
 								</div>
-
-
-
-							<!-- END .profile-right-side -->
+								{% endfor %}
+								<!-- END .profile-right-side -->
 							</div>
-
 							<div class="clear-float"></div>
-
-						<!-- END .user-profile -->
+							<!-- END .user-profile -->
 						</div>
 						<div class="respond-submit">
 							<a href="/post-users-form/{user_id}/reviews" class="defbutton"><i class="fa fa-pencil"></i>create review</a>
 						</div>
-
+						</form>
 					</div>
 				</div>
 			</section>
@@ -298,7 +290,7 @@
 					<div class="right">
 						<ul>
 							<li><a href="/">Home page</a></li>
-							<li><a href="about.html">About us</a></li>
+							<li><a href="/about">About us</a></li>
 						</ul>
 					</div>
 					<div class="clear-float"></div>

@@ -1,10 +1,16 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 import requests
+from sqlalchemy import create_engine
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import sessionmaker
 from starlette.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
+from fastapi.responses import RedirectResponse
 
 from backend.dependencies import close_db_state, db_state, metadata
 # from backend.dependencies import close_connection, engine, metadata
+from backend.models import User
 from backend.routers import tags as tags_router
 from backend.routers import categories as categories_router
 from backend.routers import artworks as artworks_router
@@ -54,22 +60,56 @@ app.include_router(router=artworks_router.router, prefix="/artworks", tags=["cru
 app.include_router(router=comments_router.router, prefix="/comments", tags=["crud - comments"])
 app.include_router(router=reviews_router.router, prefix="/reviews", tags=["crud - reviews"])
 app.include_router(router=users_router.router, prefix="/users", tags=["crud - users"])
+engine = create_engine("your_database_connection_string")
+SessionLocal = sessionmaker(bind=engine)
 
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
+@app.get("/about", response_class=HTMLResponse)
+def about(request: Request):
+    return templates.TemplateResponse("about.html", {"request": request})
+
+
+@app.get("/login")
+def login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+
+@app.post("/login")
+def authenticate_login(request: Request, login_username: str = Form(...), login_password: str = Form(...)):
+    try:
+
+        db = SessionLocal()
+
+
+        user = db.query(User).filter(User.username == login_username).first()
+
+        if user and user.check_password(login_password):
+
+            return RedirectResponse(url="/")
+        else:
+            return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid username or password."})
+    except SQLAlchemyError as e:
+
+        return templates.TemplateResponse("login.html", {"request": request, "error": "An error occurred."})
+    finally:
+
+        db.close()
+
+
 # Route for artworks
-@app.get("/get-categories/{category_id}/artworks")
+@app.get("/get-categories/{category_id}/artworks", response_class=HTMLResponse)
 def show_artworks_in_category(request: Request, artwork_data: dict, category_id: int):
     response = requests.get(f"http://127.0.0.1:8000/categories/{category_id}/artworks", json=artwork_data)
     new_artwork = response.json()
     return templates.TemplateResponse("show_artwork.html", {"request": request, "artwork": new_artwork})
 
 
-@app.get("/post-categories-form/{category_id}/artworks")
+@app.get("/post-categories-form/{category_id}/artworks", response_class=HTMLResponse)
 def create_artworks_in_category(request: Request, category_id: int):
     artwork_data = {
         "title": "string",
@@ -84,7 +124,7 @@ def create_artworks_in_category(request: Request, category_id: int):
     return templates.TemplateResponse("create_artwork.html", {"request": request, "artwork": new_artwork})
 
 
-@app.post("/post-categories/{category_id}/artworks")
+@app.post("/post-categories/{category_id}/artworks", response_class=HTMLResponse)
 def create_artworks_in_category(request: Request, category_id: int):
     artwork_data = {
         "title": "string",
@@ -99,7 +139,7 @@ def create_artworks_in_category(request: Request, category_id: int):
     return templates.TemplateResponse("create_artwork.html", {"request": request, "artwork": new_artwork})
 
 
-@app.get("/get-artworks")
+@app.get("/get-artworks", response_class=HTMLResponse)
 def show_artworks(request: Request):
     artwork_data = {
         "title": "string",
@@ -141,7 +181,7 @@ def show_artworks(request: Request):
     return templates.TemplateResponse("artworks.html", {"request": request, "artwork": new_artwork})
 
 
-@app.get("/get-artworks/{artwork_id}")
+@app.get("/get-artworks/{artwork_id}", response_class=HTMLResponse)
 def get_artwork(request: Request):
     artwork_id = {
         "title": "string",
@@ -180,10 +220,10 @@ def get_artwork(request: Request):
     }
     response = requests.get(f"http://127.0.0.1:8000/artworks/{artwork_id}")
     artwork_data = response.json()
-    return templates.TemplateResponse("show_artwork.html", {"request": request, "artwork": artwork_data})
+    return templates.TemplateResponse("artworks-single.html", {"request": request, "artwork": artwork_data})
 
 
-@app.get("/put-artworks-form/{artwork_id}")
+@app.get("/put-artworks-form/{artwork_id}", response_class=HTMLResponse)
 def update_artwork(request: Request, artwork_id: int):
     new_data = {
         "title": "string",
@@ -198,7 +238,7 @@ def update_artwork(request: Request, artwork_id: int):
     return templates.TemplateResponse("artwork_update.html", {"request": request, "artwork": updated_artwork})
 
 
-@app.put("/put-artworks/{artwork_id}")
+@app.put("/put-artworks/{artwork_id}", response_class=HTMLResponse)
 def update_artwork(request: Request, artwork_id: int):
     new_data = {
         "title": "string",
@@ -213,7 +253,7 @@ def update_artwork(request: Request, artwork_id: int):
     return templates.TemplateResponse("artwork_update.html", {"request": request, "artwork": updated_artwork})
 
 
-@app.get("/get-artworks/{artwork_id}/comments")
+@app.get("/get-artworks/{artwork_id}/comments", response_class=HTMLResponse)
 def get_artwork_comments(request: Request, artwork_id: int):
     artwork_data = {
 
@@ -229,7 +269,7 @@ def get_artwork_comments(request: Request, artwork_id: int):
     return templates.TemplateResponse("artwork_comment.html", {"request": request, "artwork": artwork_data})
 
 
-@app.get("/get-artworks/{artwork_id}/reviews")
+@app.get("/get-artworks/{artwork_id}/reviews", response_class=HTMLResponse)
 def get_artwork_reviews(request: Request, artwork_id: int):
     artwork_data = {
         "text": "string",
@@ -244,7 +284,7 @@ def get_artwork_reviews(request: Request, artwork_id: int):
 
 
 # Route for categories
-@app.get("/get-categories")
+@app.get("/get-categories", response_class=HTMLResponse)
 def show_categories(request: Request):
     category_data = {
         "name": "string",
@@ -255,7 +295,7 @@ def show_categories(request: Request):
     return templates.TemplateResponse("categorys.html", {"request": request, "category": new_category})
 
 
-@app.get("/get-categories-index")
+@app.get("/get-categories-index", response_class=HTMLResponse)
 def show_categories_for_home(request: Request):
     category_data = {
         "name": "string",
@@ -267,7 +307,7 @@ def show_categories_for_home(request: Request):
 
 
 
-@app.get("/post-categories-form")
+@app.get("/post-categories-form", response_class=HTMLResponse)
 def create_category(request: Request):
     category_data = {
         "name": "string",
@@ -278,7 +318,7 @@ def create_category(request: Request):
     return templates.TemplateResponse("category_created.html", {"request": request, "category": new_category})
 
 
-@app.post("/post-categories")
+@app.post("/post-categories", response_class=HTMLResponse)
 def create_category(request: Request):
     category_data = {
         "name": "string",
@@ -289,7 +329,7 @@ def create_category(request: Request):
     return templates.TemplateResponse("category_created.html", {"request": request, "category": new_category})
 
 
-@app.get("/get-categories/{category_id}")
+@app.get("/get-categories/{category_id}", response_class=HTMLResponse)
 def get_category(request: Request, category_id: int):
     category_data = {
         "name": "string",
@@ -311,7 +351,7 @@ def get_category(request: Request, category_id: int):
     return templates.TemplateResponse("category.html", {"request": request, "category": category_data})
 
 
-@app.get("/put-categories-form/{category_id}")
+@app.get("/put-categories-form/{category_id}", response_class=HTMLResponse)
 def update_category(request: Request, category_id: int):
     new_data = {
         "name": "string",
@@ -322,7 +362,7 @@ def update_category(request: Request, category_id: int):
     return templates.TemplateResponse("category_updated.html", {"request": request, "category": updated_category})
 
 
-@app.put("/put-categories/{category_id}")
+@app.put("/put-categories/{category_id}", response_class=HTMLResponse)
 def update_category(request: Request, category_id: int):
     new_data = {
         "name": "string",
@@ -334,7 +374,7 @@ def update_category(request: Request, category_id: int):
 
 
 # Route for comments
-@app.post("/get-get-form-comments")
+@app.post("/get-get-form-comments", response_class=HTMLResponse)
 def create_comment(request: Request):
     comment_data = {
         "text": "string",
@@ -349,7 +389,7 @@ def create_comment(request: Request):
     return templates.TemplateResponse("comment_create.html", {"request": request, "comment": new_comment})
 
 
-@app.get("/get-get-comments")
+@app.get("/get-get-comments", response_class=HTMLResponse)
 def create_comment(request: Request):
     comment_data = {
         "text": "string",
@@ -364,7 +404,7 @@ def create_comment(request: Request):
     return templates.TemplateResponse("comment_create.html", {"request": request, "comment": new_comment})
 
 
-@app.get("/get-comments/{comment_id}")
+@app.get("/get-comments/{comment_id}", response_class=HTMLResponse)
 def get_comment(request: Request, comment_id: int):
     comment_data = {
         "text": "string",
@@ -379,7 +419,7 @@ def get_comment(request: Request, comment_id: int):
     return templates.TemplateResponse("comment.html", {"request": request, "comment": comment_data})
 
 
-@app.get("/put-comments-form/{comment_id}")
+@app.get("/put-comments-form/{comment_id}", response_class=HTMLResponse)
 def update_comment(request: Request, comment_id: int):
     new_data = {
         "text": "string",
@@ -391,7 +431,7 @@ def update_comment(request: Request, comment_id: int):
     return templates.TemplateResponse("comment_update.html", {"request": request, "comment": updated_comment})
 
 
-@app.put("/put-comments/{comment_id}")
+@app.put("/put-comments/{comment_id}", response_class=HTMLResponse)
 def update_comment(request: Request, comment_id: int):
     new_data = {
         "text": "string",
@@ -404,7 +444,7 @@ def update_comment(request: Request, comment_id: int):
 
 
 # Route for reviews
-@app.get("/get-reviews")
+@app.get("/get-reviews", response_class=HTMLResponse)
 def show_reviews(request: Request, review_data: dict):
     review_data = {
         "text": "string",
@@ -418,7 +458,7 @@ def show_reviews(request: Request, review_data: dict):
     return templates.TemplateResponse("reviews.html", {"request": request, "review": new_review})
 
 
-@app.get("/get-reviews/{review_id}")
+@app.get("/get-reviews/{review_id}", response_class=HTMLResponse)
 def get_review(request: Request, review_id: int):
     review_data = {
         "text": "string",
@@ -432,7 +472,7 @@ def get_review(request: Request, review_id: int):
     return templates.TemplateResponse("review.html", {"request": request, "review": review_data})
 
 
-@app.get("/put-reviews-form/{review_id}")
+@app.get("/put-reviews-form/{review_id}", response_class=HTMLResponse)
 def update_review(request: Request, review_id: int):
     new_data = {
         "text": "string",
@@ -446,7 +486,7 @@ def update_review(request: Request, review_id: int):
     return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
 
 
-@app.put("/put-reviews/{review_id}")
+@app.put("/put-reviews/{review_id}", response_class=HTMLResponse)
 def update_review(request: Request, review_id: int):
     new_data = {
         "text": "string",
@@ -459,34 +499,9 @@ def update_review(request: Request, review_id: int):
     updated_review = response.json()
     return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
 
-@app.get("/put-reviews-form/{review_id}")
-def create_review(request: Request, review_id: int):
-    new_data = {
-        "text": "string",
-        "score": 0,
-        "id": 0,
-        "author_id": 0,
-        "artwork_id": 0
-    }
-    response = requests.get(f"http://127.0.0.1:8000/reviews/{review_id}", json=new_data)
-    updated_review = response.json()
-    return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
 
-
-@app.post("/post-reviews/{review_id}")
-def create_review(request: Request, review_id: int):
-    new_data = {
-        "text": "string",
-        "score": 0,
-        "id": 0,
-        "author_id": 0,
-        "artwork_id": 0
-    }
-    response = requests.put(f"http://127.0.0.1:8000/reviews/{review_id}", json=new_data)
-    updated_review = response.json()
-    return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
 # Route for tags
-@app.get("/get-tags/{tag_id}")
+@app.get("/get-tags/{tag_id}", response_class=HTMLResponse)
 def get_tag(request: Request, tag_id: int):
     tag_data = {
         "name": "string",
@@ -508,7 +523,7 @@ def get_tag(request: Request, tag_id: int):
     return templates.TemplateResponse("tag.html", {"request": request, "tag": tag_data})
 
 
-@app.get("/put-tags-form/{tag_id}")
+@app.get("/put-tags-form/{tag_id}", response_class=HTMLResponse)
 def update_tag(request: Request, tag_id: int):
     new_data = {
         "name": "string",
@@ -519,7 +534,7 @@ def update_tag(request: Request, tag_id: int):
     return templates.TemplateResponse("tag_update.html", {"request": request, "tag": updated_tag})
 
 
-@app.put("/put-tags/{tag_id}")
+@app.put("/put-tags/{tag_id}", response_class=HTMLResponse)
 def update_tag(request: Request, tag_id: int):
     new_data = {
         "name": "string",
@@ -530,7 +545,7 @@ def update_tag(request: Request, tag_id: int):
     return templates.TemplateResponse("tag_update.html", {"request": request, "tag": updated_tag})
 
 
-@app.get("/get-tags")
+@app.get("/get-tags", response_class=HTMLResponse)
 def show_tags(request: Request):
     tag_data = {
         "name": "string",
@@ -541,7 +556,7 @@ def show_tags(request: Request):
     return templates.TemplateResponse("login.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-index")
+@app.get("/get-tags-index", response_class=HTMLResponse)
 def show_tags_i(request: Request):
     tag_data = {
         "name": "string",
@@ -552,7 +567,7 @@ def show_tags_i(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-404")
+@app.get("/get-tags-404", response_class=HTMLResponse)
 def show_tags_404(request: Request):
     tag_data = {
         "name": "string",
@@ -563,7 +578,7 @@ def show_tags_404(request: Request):
     return templates.TemplateResponse("404-page.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-about")
+@app.get("/get-tags-about", response_class=HTMLResponse)
 def show_tags_a(request: Request):
     tag_data = {
         "name": "string",
@@ -574,7 +589,7 @@ def show_tags_a(request: Request):
     return templates.TemplateResponse("404-page.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-artwork")
+@app.get("/get-tags-artwork", response_class=HTMLResponse)
 def show_tags_art(request: Request):
     tag_data = {
         "name": "string",
@@ -585,7 +600,7 @@ def show_tags_art(request: Request):
     return templates.TemplateResponse("artworks.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-artwork-s")
+@app.get("/get-tags-artwork-s", response_class=HTMLResponse)
 def show_tags_a_s(request: Request):
     tag_data = {
         "name": "string",
@@ -596,7 +611,7 @@ def show_tags_a_s(request: Request):
     return templates.TemplateResponse("artworks.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-artwork-sd")
+@app.get("/get-tags-artwork-sd", response_class=HTMLResponse)
 def show_tags_a_sd(request: Request):
     tag_data = {
         "name": "string",
@@ -607,7 +622,7 @@ def show_tags_a_sd(request: Request):
     return templates.TemplateResponse("artworks.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-c")
+@app.get("/get-tags-c", response_class=HTMLResponse)
 def show_tags_c(request: Request):
     tag_data = {
         "name": "string",
@@ -618,7 +633,7 @@ def show_tags_c(request: Request):
     return templates.TemplateResponse("categorys.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-r")
+@app.get("/get-tags-r", response_class=HTMLResponse)
 def show_tags_r(request: Request):
     tag_data = {
         "name": "string",
@@ -629,7 +644,7 @@ def show_tags_r(request: Request):
     return templates.TemplateResponse("review.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-rs")
+@app.get("/get-tags-rs", response_class=HTMLResponse)
 def show_tags_rs(request: Request):
     tag_data = {
         "name": "string",
@@ -640,7 +655,7 @@ def show_tags_rs(request: Request):
     return templates.TemplateResponse("review-single.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-si")
+@app.get("/get-tags-si", response_class=HTMLResponse)
 def show_tags_rs(request: Request):
     tag_data = {
         "name": "string",
@@ -651,7 +666,7 @@ def show_tags_rs(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-us")
+@app.get("/get-tags-us", response_class=HTMLResponse)
 def show_tags_rs(request: Request):
     tag_data = {
         "name": "string",
@@ -662,7 +677,7 @@ def show_tags_rs(request: Request):
     return templates.TemplateResponse("user-single.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-usc")
+@app.get("/get-tags-usc", response_class=HTMLResponse)
 def show_tags_rs(request: Request):
     tag_data = {
         "name": "string",
@@ -673,7 +688,7 @@ def show_tags_rs(request: Request):
     return templates.TemplateResponse("user-single-comments.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/get-tags-usr")
+@app.get("/get-tags-usr", response_class=HTMLResponse)
 def show_tags_rs(request: Request):
     tag_data = {
         "name": "string",
@@ -684,7 +699,7 @@ def show_tags_rs(request: Request):
     return templates.TemplateResponse("user-single-review.html", {"request": request, "tag": new_tag})
 
 
-@app.get("/create-tag-form")
+@app.get("/create-tag-form", response_class=HTMLResponse)
 def create_tag(request: Request):
     tag_data = {
         "name": "",
@@ -695,7 +710,7 @@ def create_tag(request: Request):
     return templates.TemplateResponse("tag_create.html", {"request": request, "tag": new_tag})
 
 
-@app.post("/create-tag")
+@app.post("/create-tag", response_class=HTMLResponse)
 def create_tag(request: Request):
     tag_data = {
         "name": "string",
@@ -707,7 +722,7 @@ def create_tag(request: Request):
 
 
 # Route for users
-@app.get("/get-users")
+@app.get("/get-users", response_class=HTMLResponse)
 def show_users(request: Request):
     user_data = {
         "login": "string",
@@ -719,7 +734,19 @@ def show_users(request: Request):
     return templates.TemplateResponse("users.html", {"request": request, "users": new_user})
 
 
-@app.post("/make-users")
+@app.get("/make-users-form", response_class=HTMLResponse)
+def create_user(request: Request):
+    user_data = {
+        "login": "string",
+        "password": "string",
+        "email": "user@example.com"
+    }
+    response = requests.get("http://127.0.0.1:8000/users/", json=user_data)
+    new_user = response.json()
+    return templates.TemplateResponse("signup.html", {"request": request, "user": new_user})
+
+
+@app.post("/make-users", response_class=HTMLResponse)
 def create_user(request: Request):
     user_data = {
         "login": "string",
@@ -728,10 +755,10 @@ def create_user(request: Request):
     }
     response = requests.post("http://127.0.0.1:8000/users/", json=user_data)
     new_user = response.json()
-    return templates.TemplateResponse("user_create.html", {"request": request, "user": new_user})
+    return templates.TemplateResponse("signup.html", {"request": request, "user": new_user})
 
 
-@app.get("/get-users/{user_id}")
+@app.get("/get-users/{user_id}", response_class=HTMLResponse)
 def show_user_one(request: Request, user_id: int):
     user_data = {
         "login": "string",
@@ -740,10 +767,10 @@ def show_user_one(request: Request, user_id: int):
     }
     response = requests.get(f"http://127.0.0.1:8000/users/{user_id}", json=user_data)
     new_user = response.json()
-    return templates.TemplateResponse("user_show.html", {"request": request, "user": new_user})
+    return templates.TemplateResponse("user-single.html", {"request": request, "user": new_user})
 
 
-@app.get("/put-users-form/{user_id}")
+@app.get("/put-users-form/{user_id}", response_class=HTMLResponse)
 def update_user(request: Request, user_id: int):
     new_data = {
         "password": "string",
@@ -754,7 +781,7 @@ def update_user(request: Request, user_id: int):
     return templates.TemplateResponse("update_user.html", {"request": request, "user": updated_user})
 
 
-@app.put("/put-users/{user_id}")
+@app.put("/put-users/{user_id}", response_class=HTMLResponse)
 def update_user(request: Request, user_id: int):
     new_data = {
         "password": "string",
@@ -765,7 +792,7 @@ def update_user(request: Request, user_id: int):
     return templates.TemplateResponse("update_user.html", {"request": request, "user": updated_user})
 
 
-@app.get("/get-users/{user_id}/comments")
+@app.get("/get-users/{user_id}/comments", response_class=HTMLResponse)
 def show_user_comment(request: Request, user_id: int):
     user_data = {
         "text": "string",
@@ -774,10 +801,10 @@ def show_user_comment(request: Request, user_id: int):
     }
     response = requests.get(f"http://127.0.0.1:8000/users/{user_id}/comments", json=user_data)
     new_user = response.json()
-    return templates.TemplateResponse("show_user_comment.html", {"request": request, "user": new_user})
+    return templates.TemplateResponse("user-single-comments.html", {"request": request, "user": new_user})
 
 
-@app.get("/post-users-form/{user_id}/comments")
+@app.get("/post-users-form/{user_id}/comments", response_class=HTMLResponse)
 def create_user_comment(request: Request, user_id: int):
     new_data = {
         "text": "string",
@@ -789,7 +816,7 @@ def create_user_comment(request: Request, user_id: int):
     return templates.TemplateResponse("create_user_comment.html", {"request": request, "user": updated_user})
 
 
-@app.post("/post-users/{user_id}/comments")
+@app.post("/post-users/{user_id}/comments", response_class=HTMLResponse)
 def create_user_comment(request: Request, user_id: int):
     new_data = {
         "text": "string",
@@ -801,7 +828,7 @@ def create_user_comment(request: Request, user_id: int):
     return templates.TemplateResponse("create_user_comment.html", {"request": request, "user": updated_user})
 
 
-@app.get("/get-users/{user_id}/reviews")
+@app.get("/get-users/{user_id}/reviews", response_class=HTMLResponse)
 def show_user_review(request: Request, user_id: int):
     user_data = {
         "text": "string",
@@ -809,10 +836,10 @@ def show_user_review(request: Request, user_id: int):
     }
     response = requests.get(f"http://127.0.0.1:8000/users/{user_id}/reviews", json=user_data)
     new_user = response.json()
-    return templates.TemplateResponse("show_user_review.html", {"request": request, "user": new_user})
+    return templates.TemplateResponse("user-single-review.html", {"request": request, "user": new_user})
 
 
-@app.post("/post-users/{user_id}/reviews")
+@app.post("/post-users/{user_id}/reviews", response_class=HTMLResponse)
 def create_user_review(request: Request, user_id: int):
     new_data = {
         "text": "string",
@@ -820,10 +847,10 @@ def create_user_review(request: Request, user_id: int):
     }
     response = requests.post(f"http://127.0.0.1:8000/users/{user_id}/reviews", json=new_data)
     updated_user = response.json()
-    return templates.TemplateResponse("create-review.html", {"request": request, "user": updated_user})
+    return templates.TemplateResponse("create-rewiev.html", {"request": request, "user": updated_user})
 
 
-@app.get("/post-users-form/{user_id}/reviews")
+@app.get("/post-users-form/{user_id}/reviews", response_class=HTMLResponse)
 def create_user_review(request: Request, user_id: int):
     new_data = {
         "text": "string",
@@ -831,4 +858,4 @@ def create_user_review(request: Request, user_id: int):
     }
     response = requests.post(f"http://127.0.0.1:8000/users/{user_id}/reviews", json=new_data)
     updated_user = response.json()
-    return templates.TemplateResponse("create-review.html", {"request": request, "user": updated_user})
+    return templates.TemplateResponse("create-rewiev.html", {"request": request, "user": updated_user})

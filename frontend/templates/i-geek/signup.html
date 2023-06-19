@@ -113,7 +113,7 @@
 					</ul>
 					<ul class="load-responsive" rel="Menu">
 						<li><a href="login.html">Login</a></li>
-                        <li><a href="signup.html">signup</a></li>
+                        <li><a href="/make-users-form">signup</a></li>
 					</ul>
 				</div>
 			</div>
@@ -160,6 +160,7 @@
 				<div id="main-box" class="full-width">
 					
 					<div id="main">
+						<form action="/make-users-form" method="get">
 						<div class="signup-panel">
 
 							<div class="left">
@@ -192,11 +193,11 @@
 												<label for="signup_password_r">password repeat:<span class="required">*</span></label>
 												<input type="password" name="signup_password_r" id="signup_password_r" value="" />
 											</p>
-
+											<form action="/make-users" method="post">
 											<p class="form-footer">
 												<input type="submit" name="signup_submit" id="signup_submit" value="Sign up" />
 											</p>
-
+											</form>
 											<p>
 												<span class="info-msg">If you already have an account please <a href="login.html">log in</a> !</span>
 											</p>
@@ -220,7 +221,7 @@
 
 							<div class="clear-float"></div>
 						</div>
-						
+						</form>
 					</div>
 					
 					<div class="clear-float"></div>
@@ -289,7 +290,7 @@
 					<div class="right">
 						<ul>
 							<li><a href="/">Home page</a></li>
-							<li><a href="about.html">About us</a></li>
+							<li><a href="/about">About us</a></li>
 						</ul>
 					</div>
 					<div class="clear-float"></div>
