@@ -1,12 +1,11 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 import requests
-from sqlalchemy import create_engine
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import sessionmaker
+
 from starlette.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
-from fastapi.responses import RedirectResponse
+from fastapi import Depends, FastAPI, HTTPException, status
+from sqlalchemy.orm import Session
 
 from backend.dependencies import close_db_state, db_state, metadata
 # from backend.dependencies import close_connection, engine, metadata
@@ -17,7 +16,9 @@ from backend.routers import artworks as artworks_router
 from backend.routers import comments as comments_router
 from backend.routers import reviews as reviews_router
 from backend.routers import users as users_router
-from frontend.routes import artworks as artwork_route
+from backend.dependencies import get_db
+from backend.models import User
+from backend.schemas import UserCreate
 
 app = FastAPI(
     on_startup=[lambda: metadata.create_all(bind=db_state.engine)],
@@ -60,8 +61,7 @@ app.include_router(router=artworks_router.router, prefix="/artworks", tags=["cru
 app.include_router(router=comments_router.router, prefix="/comments", tags=["crud - comments"])
 app.include_router(router=reviews_router.router, prefix="/reviews", tags=["crud - reviews"])
 app.include_router(router=users_router.router, prefix="/users", tags=["crud - users"])
-engine = create_engine("your_database_connection_string")
-SessionLocal = sessionmaker(bind=engine)
+
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -74,31 +74,19 @@ def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
 
 
-@app.get("/login")
-def login(request: Request):
+@app.post("/login", status_code=status.HTTP_200_OK)
+def login(request: Request,user: UserCreate, db: Session = Depends(get_db)):
+    db_user = db.query(User).filter(User.login == user.login).first()
+    if not db_user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
+    if db_user.password != user.password:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
+
     return templates.TemplateResponse("login.html", {"request": request})
 
 
-@app.post("/login")
-def authenticate_login(request: Request, login_username: str = Form(...), login_password: str = Form(...)):
-    try:
 
-        db = SessionLocal()
-
-
-        user = db.query(User).filter(User.username == login_username).first()
-
-        if user and user.check_password(login_password):
-
-            return RedirectResponse(url="/")
-        else:
-            return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid username or password."})
-    except SQLAlchemyError as e:
-
-        return templates.TemplateResponse("login.html", {"request": request, "error": "An error occurred."})
-    finally:
-
-        db.close()
 
 
 # Route for artworks
