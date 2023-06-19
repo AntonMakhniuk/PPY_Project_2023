@@ -139,14 +139,7 @@
 										<li><a href="/get-artworks">artworks</a></li>
 									</ul>
 								</li>
-								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>forum</strong></span></a>
-									<ul class="sub-menu">
-										<li><a href="forum.html">forum</a></li>
-										<li><a href="forum-threads.html">forum-threads</a></li>
-										<li><a href="forum-single.html">forum-single</a></li>
-										<li><a href="forum-create.html">orum-create</a></li>
-									</ul>
-								</li>
+
 								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
 
 								</li>
@@ -158,7 +151,7 @@
 						<div class="header-breadcrumbs">
 							<h2 class="right">About Us</h2>
 							<ul>
-								<li><a href="index.html"> Home</a></li>
+								<li><a href="/"> Home</a></li>
 								<li>About Us</li>
 							</ul>
 						</div>
@@ -279,7 +272,7 @@
 					<!-- BEGIN .panel -->
 					<div class="panel">
 						<h2>Tags Cloud</h2>
-						<form action="/get-tags" method="get">
+						<form action="/get-tags-about" method="get">
 							<div class="panel-content">
 								{% for tag in tags %}
 								<div class="tagcloud">

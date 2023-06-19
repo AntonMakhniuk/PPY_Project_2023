@@ -136,12 +136,7 @@
 									</ul>
 								</li>
 								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>forum</strong></span></a>
-									<ul class="sub-menu">
-										<li><a href="forum.html">forum</a></li>
-										<li><a href="forum-threads.html">forum-threads</a></li>
-										<li><a href="forum-single.html">forum-single</a></li>
-										<li><a href="forum-create.html">orum-create</a></li>
-									</ul>
+
 								</li>
 								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
 
@@ -167,6 +162,7 @@
 					<div id="main">
 						 <form action="/get-reviews" method="get">
 						<h2><span>Reviews</span></h2>
+							 {{% for review in reviews %}}
 						<div class="content-padding">
 							
 							<div class="article-promo">
@@ -181,7 +177,11 @@
 							
 							<div class="clear-float do-the-split"></div>
 						</div>
+							 {% endfor %}
 						 </form>
+
+
+
 					<!-- END #main -->
 					</div>
 					
@@ -216,7 +216,7 @@
 						<!-- BEGIN .panel -->
 						<div class="panel">
 							<h2> Tags Cloud</h2>
-							<form action="/get-tags" method="get">
+							<form action="/get-tags-r" method="get">
 							<div class="panel-content">
 								{% for tag in tags %}
 								<div class="tagcloud">
@@ -277,7 +277,7 @@
 					<!-- BEGIN .panel -->
 					<div class="panel">
 						<h2>Tags Cloud</h2>
-						<form action="/get-tags" method="get">
+						<form action="/get-tags-r" method="get">
 							<div class="panel-content">
 								{% for tag in tags %}
 								<div class="tagcloud">

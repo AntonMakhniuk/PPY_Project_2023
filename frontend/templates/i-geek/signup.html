@@ -138,14 +138,7 @@
 										<li><a href="/get-artworks">artworks</a></li>
 									</ul>
 								</li>
-								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>forum</strong></span></a>
-									<ul class="sub-menu">
-										<li><a href="forum.html">forum</a></li>
-										<li><a href="forum-threads.html">forum-threads</a></li>
-										<li><a href="forum-single.html">forum-single</a></li>
-										<li><a href="forum-create.html">orum-create</a></li>
-									</ul>
-								</li>
+
 								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
 
 								</li>
@@ -157,7 +150,7 @@
 						<div class="header-breadcrumbs">
 							<h2 class="right">Sign up</h2>
 							<ul>
-								<li><a href="index.html">Homepage</a></li>
+								<li><a href="/">Homepage</a></li>
 								<li>Sign up</li>
 							</ul>
 						</div>
@@ -172,17 +165,10 @@
 							<div class="left">
 								<h2><span>Sign up</span></h2>
 								<div class="content-padding">
-									<p class="p-padding">An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
+									<p class="p-padding">If you don't have account you can register to have access to all features of the website.</p>
 
-									<div class="login-passes">
-										<b>Or you can use passports:</b>
-										<a href="#" class="strike-tooltip" title="Use Facebook.com passport"><img src="images/social-icon-facebook.png" alt="" /></a>
-										<a href="#" class="strike-tooltip" title="Use Twitter.com passport"><img src="images/social-icon-twitter.png" alt="" /></a>
-										<a href="#" class="strike-tooltip" title="Use Steampowered.com passport"><img src="images/social-icon-steam.png" alt="" /></a>
-										<a href="#" class="strike-tooltip" title="Use Google.com passport"><img src="images/social-icon-google.png" alt="" /></a>
-									</div>
 
-									<p class="p-padding">An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
+
 
 									<div class="the-form">
 										<form action="" method="post">
@@ -191,12 +177,6 @@
 												<label for="signup_username">Username:<span class="required">*</span></label>
 												<input type="text" name="signup_username" id="signup_username" value="" />
 											</p>
-
-											<p>
-												<label for="signup_name">Name, Surname:<span class="required">*</span></label>
-												<input type="text" name="signup_name" id="signup_name" value="" />
-											</p>
-
 											<p>
 												<label for="signup_email">E-mail:<span class="required">*</span></label>
 												<input class="error-input" type="text" name="signup_email" id="signup_email" value="" />
@@ -228,38 +208,11 @@
 							</div>
 
 							<div class="right">
-								<h2><span>What is Revelio ?</span></h2>
+								<h2><span>WHY DO YOU NEED TO AUTHORIZE?</span></h2>
 								<div class="content-padding">
 									
 									<div class="form-split-about">
-										<p class="p-padding">Lorem ipsum dolor sit amet, natum referrentur sea no. Sensibus definitionem necessitatibus id vim, eu ornatus intellegat argumentum nam. Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
-
-										<ul>
-											<li>
-												<i class="fa fa-picture-o"></i>
-												<b>Id ius facete urbanitas concludaturque mea</b>
-												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua.</p>
-											</li>
-											
-											<li>
-												<i class="fa fa-trophy"></i>
-												<b>Id ius facete urbanitas concludaturque mea</b>
-												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
-											</li>
-
-											<li>
-												<i class="fa fa-microphone"></i>
-												<b>Id ius facete urbanitas concludaturque mea</b>
-												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
-											</li>
-											
-											<li>
-												<i class="fa fa-comments"></i>
-												<b>Id ius facete urbanitas concludaturque mea</b>
-												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua.</p>
-											</li>
-										</ul>
-										
+										<p class="p-padding">To gain access to certain features and functionalities of the website. This website is currently in development, so, please, leave your feedback about errors you encountered. Our admins will fix them as quickly as possible!</p>
 									</div>
 									
 								</div>
@@ -317,13 +270,15 @@
 					<!-- BEGIN .panel -->
 					<div class="panel">
 						<h2>Tags Cloud</h2>
-						<div class="panel-content">
-
-							<div class="tagcloud">
-								<a href="#">Teg1</a><a href="#">Teg2</a><a href="#">Teg3</a><a href="#">GTA V</a><a href="#">Teg4</a><a href="#">Teg5</a><a href="#">Teg6</a><a href="#">Teg7</a><a href="#">Teg8</a><a href="#">Teg9</a><a href="#">Teg10</a><a href="#">Teg11</a><a href="#">Teg12</a><a href="#">Teg13</a><a href="#">Teg14</a><a href="#">Teg15</a><a href="#">Teg16</a><a href="#">Teg18</a><a href="#">Teg20</a>
+						<form action="/get-tags-si" method="get">
+							<div class="panel-content">
+								{% for tag in tags %}
+								<div class="tagcloud">
+									<a href="/get-tags/{tag_id}">{{tag.name}}</a>
+								</div>
+								{% endfor %}
 							</div>
-
-						</div>
+							</form>
 					<!-- END .panel -->
 					</div>
 
@@ -333,7 +288,7 @@
 					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
 					<div class="right">
 						<ul>
-							<li><a href="index.html">Home page</a></li>
+							<li><a href="/">Home page</a></li>
 							<li><a href="about.html">About us</a></li>
 						</ul>
 					</div>

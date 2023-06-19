@@ -2,7 +2,7 @@
 <html lang = "en">
 	<head>
 		<meta charset="utf-8" />
-		<title>I-geek | Forgot password</title>
+		<title>I-Geek | review create</title>
 		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta name="description" content="" />
@@ -138,14 +138,6 @@
 										<li><a href="/get-artworks">artworks</a></li>
 									</ul>
 								</li>
-								<li><a href="forum.html"><span><i class="fa fa-comments-o"></i><strong>forum</strong></span></a>
-									<ul class="sub-menu">
-										<li><a href="forum.html">forum</a></li>
-										<li><a href="forum-threads.html">forum-threads</a></li>
-										<li><a href="forum-single.html">forum-single</a></li>
-										<li><a href="forum-create.html">orum-create</a></li>
-									</ul>
-								</li>
 								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
 
 								</li>
@@ -155,100 +147,78 @@
 
 					<div class="wrapper">
 						<div class="header-breadcrumbs">
-							<h2 class="right">Forgot password</h2>
+							<h2 class="right">Create review</h2>
 							<ul>
-								<li><a href="index.html">Homepage</a></li>
-								<li>Forgot password</li>
+								<li><a href="/">Homepage</a></li>
+								<li>Create review</li>
 							</ul>
 						</div>
 					</div>
-					
+
 				</header>
 				<div id="main-box" class="full-width">
-					
+
 					<div id="main">
-						
-						<!-- BEGIN .signup-panel -->
-						<div class="signup-panel">
-							
-							<!-- BEGIN .left -->
-							<div class="left">
-								<h2><span>Password recovery</span></h2>
-								<div class="content-padding">
-									
-									<div class="the-form" style="margin-top:40px;">
-										<form action="signup-password-2.html" method="post">
+						<div class="forum-block">
 
-											<p>
-												<label for="forgot_email">E-mail:</label>
-												<input type="text" name="forgot_email" id="forgot_email" value="" />
-											</p>
+							<h2><span>Create Review</span></h2>
+							<form action="/post-users-form/{user_id}/reviews" method="get">
 
-											<p class="form-footer">
-												<input type="submit" name="forgot_submit" id="forgot_submit" value="Send a key to e-mail" />
-											</p>
 
-											<p style="margin-top:40px;">
-												<span class="info-msg">Lorem ipsum dolor sit amet, natum referrentur sea no. Sensibus definitionem necessitatibus id vim, eu ornatus intellegat argumentum nam. Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</span>
-											</p>
+							<div class="content-padding full-reply">
+								<div class="reply-box">
+									<div class="reply-textarea">
+										<form action="" method="get">
+											<div class="respond-input">
 
+												<input type="text" value="Cool thread title" />
+											</div>
+											<div class="respond-textarea">
+												<div class="textarea-wrapper strike-wysiwyg-enable" rel="wys-current">
+													<div class="bbcodes">
+														<a href="#strike-bb" class="strike-bold"><i class="fa fa-bold strike-tooltip" title="Bold"></i></a>
+														<a href="#strike-bb" class="strike-italic"><i class="fa fa-italic strike-tooltip" title="Italic"></i></a>
+														<a href="#strike-bb" class="strike-strike"><i class="fa fa-strikethrough strike-tooltip" title="Strike"></i></a>
+														<a href="#strike-bb" class="strike-underline"><i class="fa fa-underline strike-tooltip" title="Underline"></i></a>
+														<a href="#strike-bb" class="strike-link"><i class="fa fa-chain strike-tooltip" title="Hyperlink"></i></a>
+														<a href="#strike-bb" class="strike-photo"><i class="fa fa-picture-o strike-tooltip" title="Photo"></i></a>
+														<a href="#strike-bb" class="strike-quote"><i class="fa fa-comment strike-tooltip" title="Quote"></i></a>
+														<a href="#strike-bb" class="strike-yt"><i class="fa fa-youtube strike-tooltip" title="Youtube video"></i></a>
+														<a href="#strike-bb" class="strike-code"><i class="fa fa-code strike-tooltip" title="Code"></i></a>
+														<a href="#strike-bb-switch" class="right"><i class="fa fa-css3 strike-tooltip" title="Revelio WYSIWYG"></i></a>
+													</div>
+													<label>
+														<textarea name="comment-text"></textarea>
+													</label><br/>
+
+												</div>
+											</div>
+											<form action="/post-users/{user_id}/reviews" method="post">
+											<div class="respond-submit">
+												<input type="submit" name="send" value="Publish review">
+											</div>
+											</form>
 										</form>
 									</div>
-
 								</div>
-							<!-- END .left -->
 							</div>
+							</form>
 
-							<!-- BEGIN .right -->
-							<div class="right">
-								<h2><span>How this works ?</span></h2>
-								<div class="content-padding">
-									
-									<div class="form-split-about">
-										<p class="p-padding">Lorem ipsum dolor sit amet, natum referrentur sea no. Sensibus definitionem necessitatibus id vim, eu ornatus intellegat argumentum nam. Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
-										
-										<ul>
-											<li>
-												<font>1.</font>
-												<b>You receive an email with a key</b>
-												<p class="p-padding">Sensibus definitionem necessitatibus id vim, eu ornatus intellegat argumentum nam</p>
-											</li>
-											
-											<li>
-												<font>2.</font>
-												<b>Enter key or follow link</b>
-												<p class="p-padding">Sensibus definitionem necessitatibus id vim, eu ornatus intellegat argumentum nam</p>
-											</li>
-
-											<li>
-												<font>3.</font>
-												<b>Create new password</b>
-												<p class="p-padding">Sensibus definitionem necessitatibus id vim, eu ornatus intellegat argumentum nam</p>
-											</li>
-										</ul>
-
-									</div>
-
-								</div>
-							<!-- END .left -->
-							</div>
-
-							<div class="clear-float"></div>
-
-						<!-- END .signup-panel -->
 						</div>
 
 					</div>
-					
+
 					<div class="clear-float"></div>
-					
+
 				</div>
 			</section>
 			</div>
 		</div>
-			
+
 		<div class="clear-float"></div>
-		
+
+		<div class="clear-float"></div>
+
 		<div class="wrapper">
 			<!-- BEGIN .footer -->
 			<div class="footer">
@@ -287,13 +257,15 @@
 					<!-- BEGIN .panel -->
 					<div class="panel">
 						<h2>Tags Cloud</h2>
-						<div class="panel-content">
-
-							<div class="tagcloud">
-								<a href="#">Teg1</a><a href="#">Teg2</a><a href="#">Teg3</a><a href="#">GTA V</a><a href="#">Teg4</a><a href="#">Teg5</a><a href="#">Teg6</a><a href="#">Teg7</a><a href="#">Teg8</a><a href="#">Teg9</a><a href="#">Teg10</a><a href="#">Teg11</a><a href="#">Teg12</a><a href="#">Teg13</a><a href="#">Teg14</a><a href="#">Teg15</a><a href="#">Teg16</a><a href="#">Teg18</a><a href="#">Teg20</a>
+						<form action="/get-tags" method="get">
+							<div class="panel-content">
+								{% for tag in tags %}
+								<div class="tagcloud">
+									<a href="/get-tags/{tag_id}">{{tag.name}}</a>
+								</div>
+								{% endfor %}
 							</div>
-
-						</div>
+							</form>
 					<!-- END .panel -->
 					</div>
 
@@ -303,7 +275,7 @@
 					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
 					<div class="right">
 						<ul>
-							<li><a href="index.html">Home page</a></li>
+							<li><a href="/">Home page</a></li>
 							<li><a href="about.html">About us</a></li>
 						</ul>
 					</div>
@@ -320,6 +292,9 @@
 		<script type='text/javascript'>
 			var strike_autostart = false;
 		</script>
+		<script type='text/javascript' src='jscript/rangyinputs-jquery-1.1.2.min.js'></script>
+		<script type='text/javascript' src='jscript/rangy-core.js'></script>
+		<script type='text/javascript' src='jscript/rangy-selectionsaverestore.js'></script>
 		<script type='text/javascript' src='jscript/theme-script.js'></script>
 	</body>
 </html>

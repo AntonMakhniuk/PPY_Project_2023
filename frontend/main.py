@@ -46,7 +46,7 @@ tags_metadata = [
 ]
 
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-templates = Jinja2Templates(directory="frontend/templates")
+templates = Jinja2Templates(directory="frontend/templates/i-geek")
 
 app.include_router(router=tags_router.router, prefix="/tags", tags=["crud - tags"])
 app.include_router(router=categories_router.router, prefix="/categories", tags=["crud - categories"])
@@ -58,7 +58,7 @@ app.include_router(router=users_router.router, prefix="/users", tags=["crud - us
 
 @app.get("/")
 def root(request: Request):
-    return templates.TemplateResponse("home.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 # Route for artworks
@@ -252,7 +252,19 @@ def show_categories(request: Request):
     }
     response = requests.get("http://127.0.0.1:8000/categories", json=category_data)
     new_category = response.json()
-    return templates.TemplateResponse("categories.html", {"request": request, "category": new_category})
+    return templates.TemplateResponse("categorys.html", {"request": request, "category": new_category})
+
+
+@app.get("/get-categories-index")
+def show_categories_for_home(request: Request):
+    category_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/categories", json=category_data)
+    new_category = response.json()
+    return templates.TemplateResponse("index.html", {"request": request, "category": new_category})
+
 
 
 @app.get("/post-categories-form")
@@ -447,7 +459,32 @@ def update_review(request: Request, review_id: int):
     updated_review = response.json()
     return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
 
+@app.get("/put-reviews-form/{review_id}")
+def create_review(request: Request, review_id: int):
+    new_data = {
+        "text": "string",
+        "score": 0,
+        "id": 0,
+        "author_id": 0,
+        "artwork_id": 0
+    }
+    response = requests.get(f"http://127.0.0.1:8000/reviews/{review_id}", json=new_data)
+    updated_review = response.json()
+    return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
 
+
+@app.post("/post-reviews/{review_id}")
+def create_review(request: Request, review_id: int):
+    new_data = {
+        "text": "string",
+        "score": 0,
+        "id": 0,
+        "author_id": 0,
+        "artwork_id": 0
+    }
+    response = requests.put(f"http://127.0.0.1:8000/reviews/{review_id}", json=new_data)
+    updated_review = response.json()
+    return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
 # Route for tags
 @app.get("/get-tags/{tag_id}")
 def get_tag(request: Request, tag_id: int):
@@ -501,7 +538,150 @@ def show_tags(request: Request):
     }
     response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
     new_tag = response.json()
-    return templates.TemplateResponse("tags.html", {"request": request, "tag": new_tag})
+    return templates.TemplateResponse("login.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-index")
+def show_tags_i(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("index.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-404")
+def show_tags_404(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("404-page.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-about")
+def show_tags_a(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("404-page.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-artwork")
+def show_tags_art(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("artworks.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-artwork-s")
+def show_tags_a_s(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("artworks.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-artwork-sd")
+def show_tags_a_sd(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("artworks.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-c")
+def show_tags_c(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("categorys.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-r")
+def show_tags_r(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("review.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-rs")
+def show_tags_rs(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("review-single.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-si")
+def show_tags_rs(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("signup.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-us")
+def show_tags_rs(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("user-single.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-usc")
+def show_tags_rs(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("user-single-comments.html", {"request": request, "tag": new_tag})
+
+
+@app.get("/get-tags-usr")
+def show_tags_rs(request: Request):
+    tag_data = {
+        "name": "string",
+        "description": "string"
+    }
+    response = requests.get("http://127.0.0.1:8000/tags/", json=tag_data)
+    new_tag = response.json()
+    return templates.TemplateResponse("user-single-review.html", {"request": request, "tag": new_tag})
 
 
 @app.get("/create-tag-form")
@@ -640,4 +820,15 @@ def create_user_review(request: Request, user_id: int):
     }
     response = requests.post(f"http://127.0.0.1:8000/users/{user_id}/reviews", json=new_data)
     updated_user = response.json()
-    return templates.TemplateResponse("create_user_review.html", {"request": request, "user": updated_user})
+    return templates.TemplateResponse("create-review.html", {"request": request, "user": updated_user})
+
+
+@app.get("/post-users-form/{user_id}/reviews")
+def create_user_review(request: Request, user_id: int):
+    new_data = {
+        "text": "string",
+        "score": 0
+    }
+    response = requests.post(f"http://127.0.0.1:8000/users/{user_id}/reviews", json=new_data)
+    updated_user = response.json()
+    return templates.TemplateResponse("create-review.html", {"request": request, "user": updated_user})
