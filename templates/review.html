@@ -13,11 +13,11 @@
 		<meta property="og:description" content="" />
 		<meta property="og:site_name" content="I-Geek | Home" />
 		<link rel="shortcut icon" type="image/png" href="../static/images/favicon.png" />
-		<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/dat-menu.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/main-stylesheet.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/responsive.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/reset.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/dat-menu.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/main-stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/responsive.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
 		<meta name="theme-color" content="black">
 		<meta name="msapplication-navbutton-color" content="black">
@@ -109,7 +109,7 @@
 						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
 					</ul>
 					<ul class="load-responsive" rel="Menu">
-						<li><a href="login.html">Login</a></li>
+						<li><a href="/login">Login</a></li>
                         <li><a href="/make-users-form">signup</a></li>
 					</ul>
 				</div>
@@ -120,7 +120,7 @@
 					<div id="menu-bottom">
 						<nav id="menu" class="main-menu">
 							<div class="blur-before"></div>
-							<a href="/app/frontendtend/static" class="header-logo left"><img src="../static/images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="/home" class="header-logo left"><img src="../static/images/logo.png" class="logo" alt="Revelio" title="" /></a>
 							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
 							<ul class="load-responsive" rel="Main menu">
 								<li><a href="/get-reviews"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
@@ -148,7 +148,7 @@
 						<div class="header-breadcrumbs">
 							<h2 class="right">Review Page</h2>
 							<ul>
-								<li><a href="/app/frontendtend/static">Homepage</a></li>
+								<li><a href="/home">Homepage</a></li>
 								<li>Review Page</li>
 							</ul>
 						</div>
@@ -161,11 +161,11 @@
 					<div id="main">
 						 <form action="/get-reviews" method="get">
 						<h2><span>Reviews</span></h2>
-							 {{% for review in reviews %}}
+
 						<div class="content-padding">
 							
 							<div class="article-promo">
-
+								{% for review in reviews %}
 								
 								<div class="article-content">
 									<h3><a href="/get-reviews/{review_id}">review</a></h3>
@@ -175,8 +175,9 @@
 							</div>
 							
 							<div class="clear-float do-the-split"></div>
+							{% endfor %}
 						</div>
-							 {% endfor %}
+
 						 </form>
 
 
@@ -294,7 +295,7 @@
 					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
 					<div class="right">
 						<ul>
-							<li><a href="/app/frontendtend/static">Home page</a></li>
+							<li><a href="/home">Home page</a></li>
 							<li><a href="/about">About us</a></li>
 						</ul>
 					</div>

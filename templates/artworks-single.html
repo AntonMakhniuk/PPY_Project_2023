@@ -13,11 +13,11 @@
 		<meta property="og:description" content="" />
 		<meta property="og:site_name" content="I-Geek | Home" />
 		<link rel="shortcut icon" type="image/png" href="../static/images/favicon.png" />
-		<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/dat-menu.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/main-stylesheet.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/responsive.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/reset.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/dat-menu.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/main-stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/responsive.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
 		<meta name="theme-color" content="black">
 		<meta name="msapplication-navbutton-color" content="black">
@@ -94,7 +94,7 @@
 	<!-- <body class="has-top-menu"> -->
 		<!-- BEGIN #slider-imgs -->
 		<div id="slider-imgs">
-			<div class="featured-img-box" style="background-image: url(image-90.jpg);">
+			<div class="featured-img-box" style="background-image: url(../static/images/image-90.jpg);">
 				<div id="featured-img-1" class="featured-img"></div>
 				<div id="featured-img-2" class="featured-img invisible"></div>
 				<div id="featured-img-3" class="featured-img invisible"></div>
@@ -113,7 +113,7 @@
 						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
 					</ul>
 					<ul class="load-responsive" rel="Menu">
-						<li><a href="login.html">Login</a></li>
+						<li><a href="/login">Login</a></li>
                         <li><a href="/make-users-form">signup</a></li>
 					</ul>
 				</div>
@@ -124,7 +124,7 @@
 					<div id="menu-bottom">
 						<nav id="menu" class="main-menu">
 							<div class="blur-before"></div>
-							<a href="/app/frontendtend/static" class="header-logo left"><img src="../static/images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="/home" class="header-logo left"><img src="../static/images/logo.png" class="logo" alt="Revelio" title="" /></a>
 							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
 							<ul class="load-responsive" rel="Main menu">
 								<li><a href="/get-reviews"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
@@ -154,7 +154,7 @@
 					<div id="main" itemscope="" itemtype="http://data-vocabulary.org/Review">
 						<div class="game-info-left">
 
-							<img itemprop="image" src="{{artwork.poster_url}}" class="game-poster" alt="images/posters/2351232-tomb_raider.jpg" />
+							<img itemprop="image" src="{{artwork.poster_url}}" class="game-poster" alt="../static/images/posters/2351232-tomb_raider.jpg" />
 							<div class="game-info-details">
 
 								<div class="game-info-rating">
@@ -333,7 +333,7 @@
 					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
 					<div class="right">
 						<ul>
-							<li><a href="/app/frontendtend/static">Home page</a></li>
+							<li><a href="/home">Home page</a></li>
 							<li><a href="/about">About us</a></li>
 						</ul>
 					</div>

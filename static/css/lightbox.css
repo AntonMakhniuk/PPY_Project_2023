@@ -50,7 +50,7 @@
 	overflow:hidden;
 	width:30px;
 	height:30px;
-	background:url(lightbox-close.png) no-repeat center;
+	background:url(static/images/lightbox-close.png) no-repeat center;
 	opacity: 0.3;
 	filter: alpha(opacity=30);
 	z-index:201;
@@ -66,7 +66,7 @@
 	position:absolute;
 	width:80px;
 	height:80px;
-	background:#fff url(loading.gif) no-repeat center;
+	background:#fff url(static/images/loading.gif) no-repeat center;
 	text-align:center;
 	box-shadow:0px 1px 6px rgba(0,0,0,0.3);
 	-moz-transition: width 0.4s, height 0.4s, top 0.4s, left 0.4s;
@@ -97,11 +97,11 @@
 }
 
 #lightbox-box > div > font a#lightbox-left {
-	background-image:url(lightbox-left.jpg);
+	background-image:url(static/images/lightbox-left.jpg);
 }
 
 #lightbox-box > div > font a#lightbox-right {
-	background-image:url(lightbox-right.jpg);
+	background-image:url(static/images/lightbox-right.jpg);
 }
 
 #lightbox-box > div > font a:hover {

@@ -8,6 +8,7 @@ from starlette.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
+from starlette.templating import _TemplateResponse
 
 from backend.dependencies import close_db_state, db_state, metadata
 # from backend.dependencies import close_connection, engine, metadata
@@ -61,8 +62,12 @@ app.include_router(router=reviews_router.router, prefix="/reviews", tags=["crud 
 app.include_router(router=users_router.router, prefix="/users", tags=["crud - users"])
 
 
-
 @app.get("/", response_class=HTMLResponse)
+def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
+@app.get("/home", response_class=HTMLResponse)
 def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
@@ -73,7 +78,7 @@ def about(request: Request):
 
 
 @app.post("/login", status_code=status.HTTP_200_OK)
-def login(request: Request,user: UserCreate, db: Session = Depends(get_db)):
+def login(request: Request, user: UserCreate, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.login == user.login).first()
     if not db_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
@@ -84,45 +89,20 @@ def login(request: Request,user: UserCreate, db: Session = Depends(get_db)):
     return templates.TemplateResponse("login.html", {"request": request})
 
 
-
-
-
 # Route for artworks
 @app.get("/get-categories/{category_id}/artworks", response_class=HTMLResponse)
-def show_artworks_in_category(request: Request, artwork_data: dict, category_id: int):
-    response = requests.get(f"http://127.0.0.1:8000/categories/{category_id}/artworks", json=artwork_data)
-    new_artwork = response.json()
-    return templates.TemplateResponse("show_artwork.html", {"request": request, "artwork": new_artwork})
-
-
-@app.get("/post-categories-form/{category_id}/artworks", response_class=HTMLResponse)
-def create_artworks_in_category(request: Request, category_id: int):
+def show_artworks_in_category(request: Request, category_id: int):
     artwork_data = {
         "title": "string",
         "description": "string",
         "poster_url": "string",
-        "release_date": "2023-06-09",
+        "release_date": "2023-06-19",
         "age_rating": "string",
         "star_rating": 0
     }
     response = requests.get(f"http://127.0.0.1:8000/categories/{category_id}/artworks", json=artwork_data)
     new_artwork = response.json()
-    return templates.TemplateResponse("create_artwork.html", {"request": request, "artwork": new_artwork})
-
-
-@app.post("/post-categories/{category_id}/artworks", response_class=HTMLResponse)
-def create_artworks_in_category(request: Request, category_id: int):
-    artwork_data = {
-        "title": "string",
-        "description": "string",
-        "poster_url": "string",
-        "release_date": "2023-06-09",
-        "age_rating": "string",
-        "star_rating": 0
-    }
-    response = requests.post(f"http://127.0.0.1:8000/categories/{category_id}/artworks", json=artwork_data)
-    new_artwork = response.json()
-    return templates.TemplateResponse("create_artwork.html", {"request": request, "artwork": new_artwork})
+    return templates.TemplateResponse("artworks", {"request": request, "artwork": new_artwork})
 
 
 @app.get("/get-artworks", response_class=HTMLResponse)
@@ -131,12 +111,12 @@ def show_artworks(request: Request):
         "title": "string",
         "description": "string",
         "poster_url": "string",
-        "release_date": "2023-06-09",
+        "release_date": "2023-06-19",
         "age_rating": "string",
         "star_rating": 0,
         "id": 0,
         "category_id": 0,
-        "comments":
+        "comments": [
             {
                 "text": "string",
                 "likes": 0,
@@ -145,8 +125,8 @@ def show_artworks(request: Request):
                 "author_id": 0,
                 "artwork_id": 0
             }
-        ,
-        "reviews":
+        ],
+        "reviews": [
             {
                 "text": "string",
                 "score": 0,
@@ -154,13 +134,13 @@ def show_artworks(request: Request):
                 "author_id": 0,
                 "artwork_id": 0
             }
-        ,
-        "tags":
+        ],
+        "tags": [
             {
                 "name": "string",
                 "description": "string"
             }
-
+        ]
     }
     response = requests.get("http://127.0.0.1:8000/artworks", json=artwork_data)
     new_artwork = response.json()
@@ -173,7 +153,7 @@ def get_artwork(request: Request):
         "title": "string",
         "description": "string",
         "poster_url": "string",
-        "release_date": "2023-06-09",
+        "release_date": "2023-06-19",
         "age_rating": "string",
         "star_rating": 0,
         "id": 0,
@@ -209,36 +189,6 @@ def get_artwork(request: Request):
     return templates.TemplateResponse("artworks-single.html", {"request": request, "artwork": artwork_data})
 
 
-@app.get("/put-artworks-form/{artwork_id}", response_class=HTMLResponse)
-def update_artwork(request: Request, artwork_id: int):
-    new_data = {
-        "title": "string",
-        "description": "string",
-        "poster_url": "string",
-        "release_date": "2023-06-09",
-        "age_rating": "string",
-        "star_rating": 0
-    }
-    response = requests.get(f"http://127.0.0.1:8000/artworks/{artwork_id}", json=new_data)
-    updated_artwork = response.json()
-    return templates.TemplateResponse("artwork_update.html", {"request": request, "artwork": updated_artwork})
-
-
-@app.put("/put-artworks/{artwork_id}", response_class=HTMLResponse)
-def update_artwork(request: Request, artwork_id: int):
-    new_data = {
-        "title": "string",
-        "description": "string",
-        "poster_url": "string",
-        "release_date": "2023-06-09",
-        "age_rating": "string",
-        "star_rating": 0
-    }
-    response = requests.put(f"http://127.0.0.1:8000/artworks/{artwork_id}", json=new_data)
-    updated_artwork = response.json()
-    return templates.TemplateResponse("artwork_update.html", {"request": request, "artwork": updated_artwork})
-
-
 @app.get("/get-artworks/{artwork_id}/comments", response_class=HTMLResponse)
 def get_artwork_comments(request: Request, artwork_id: int):
     artwork_data = {
@@ -252,7 +202,7 @@ def get_artwork_comments(request: Request, artwork_id: int):
     }
     response = requests.get(f"http://127.0.0.1:8000/artworks/{artwork_id}/comments", json=artwork_data)
     artwork_data = response.json()
-    return templates.TemplateResponse("artwork_comment.html", {"request": request, "artwork": artwork_data})
+    return templates.TemplateResponse("artowrk-single.html", {"request": request, "artwork": artwork_data})
 
 
 @app.get("/get-artworks/{artwork_id}/reviews", response_class=HTMLResponse)
@@ -285,34 +235,22 @@ def show_categories(request: Request):
 def show_categories_for_home(request: Request):
     category_data = {
         "name": "string",
-        "description": "string"
+        "description": "string",
+        "id": 0,
+        "artworks": [
+            {
+                "title": "string",
+                "description": "string",
+                "poster_url": "string",
+                "release_date": "2023-06-19",
+                "age_rating": "string",
+                "star_rating": 0
+            }
+        ]
     }
     response = requests.get("http://127.0.0.1:8000/categories", json=category_data)
     new_category = response.json()
     return templates.TemplateResponse("index.html", {"request": request, "category": new_category})
-
-
-
-@app.get("/post-categories-form", response_class=HTMLResponse)
-def create_category(request: Request):
-    category_data = {
-        "name": "string",
-        "description": "string"
-    }
-    response = requests.get("http://127.0.0.1:8000/categories", json=category_data)
-    new_category = response.json()
-    return templates.TemplateResponse("category_created.html", {"request": request, "category": new_category})
-
-
-@app.post("/post-categories", response_class=HTMLResponse)
-def create_category(request: Request):
-    category_data = {
-        "name": "string",
-        "description": "string"
-    }
-    response = requests.post("http://127.0.0.1:8000/categories", json=category_data)
-    new_category = response.json()
-    return templates.TemplateResponse("category_created.html", {"request": request, "category": new_category})
 
 
 @app.get("/get-categories/{category_id}", response_class=HTMLResponse)
@@ -335,28 +273,6 @@ def get_category(request: Request, category_id: int):
     response = requests.get(f"http://127.0.0.1:8000/categories/{category_id}", json=category_data)
     category_data = response.json()
     return templates.TemplateResponse("category.html", {"request": request, "category": category_data})
-
-
-@app.get("/put-categories-form/{category_id}", response_class=HTMLResponse)
-def update_category(request: Request, category_id: int):
-    new_data = {
-        "name": "string",
-        "description": "string"
-    }
-    response = requests.get(f"http://127.0.0.1:8000/categories/{category_id}", json=new_data)
-    updated_category = response.json()
-    return templates.TemplateResponse("category_updated.html", {"request": request, "category": updated_category})
-
-
-@app.put("/put-categories/{category_id}", response_class=HTMLResponse)
-def update_category(request: Request, category_id: int):
-    new_data = {
-        "name": "string",
-        "description": "string"
-    }
-    response = requests.put(f"http://127.0.0.1:8000/categories/{category_id}", json=new_data)
-    updated_category = response.json()
-    return templates.TemplateResponse("category_updated.html", {"request": request, "category": updated_category})
 
 
 # Route for comments
@@ -405,33 +321,9 @@ def get_comment(request: Request, comment_id: int):
     return templates.TemplateResponse("comment.html", {"request": request, "comment": comment_data})
 
 
-@app.get("/put-comments-form/{comment_id}", response_class=HTMLResponse)
-def update_comment(request: Request, comment_id: int):
-    new_data = {
-        "text": "string",
-        "likes": 0,
-        "dislikes": 0
-    }
-    response = requests.get(f"http://127.0.0.1:8000/comments/{comment_id}", json=new_data)
-    updated_comment = response.json()
-    return templates.TemplateResponse("comment_update.html", {"request": request, "comment": updated_comment})
-
-
-@app.put("/put-comments/{comment_id}", response_class=HTMLResponse)
-def update_comment(request: Request, comment_id: int):
-    new_data = {
-        "text": "string",
-        "likes": 0,
-        "dislikes": 0
-    }
-    response = requests.put(f"http://127.0.0.1:8000/comments/{comment_id}", json=new_data)
-    updated_comment = response.json()
-    return templates.TemplateResponse("comment_update.html", {"request": request, "comment": updated_comment})
-
-
 # Route for reviews
 @app.get("/get-reviews", response_class=HTMLResponse)
-def show_reviews(request: Request, review_data: dict):
+def show_reviews(request: Request):
     review_data = {
         "text": "string",
         "score": 0,
@@ -441,7 +333,7 @@ def show_reviews(request: Request, review_data: dict):
     }
     response = requests.get("http://127.0.0.1:8000/reviews", json=review_data)
     new_review = response.json()
-    return templates.TemplateResponse("reviews.html", {"request": request, "review": new_review})
+    return templates.TemplateResponse("review.html", {"request": request, "review": new_review})
 
 
 @app.get("/get-reviews/{review_id}", response_class=HTMLResponse)
@@ -455,35 +347,7 @@ def get_review(request: Request, review_id: int):
     }
     response = requests.get(f"http://127.0.0.1:8000/reviews/{review_id}", json=review_data)
     review_data = response.json()
-    return templates.TemplateResponse("review.html", {"request": request, "review": review_data})
-
-
-@app.get("/put-reviews-form/{review_id}", response_class=HTMLResponse)
-def update_review(request: Request, review_id: int):
-    new_data = {
-        "text": "string",
-        "score": 0,
-        "id": 0,
-        "author_id": 0,
-        "artwork_id": 0
-    }
-    response = requests.get(f"http://127.0.0.1:8000/reviews/{review_id}", json=new_data)
-    updated_review = response.json()
-    return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
-
-
-@app.put("/put-reviews/{review_id}", response_class=HTMLResponse)
-def update_review(request: Request, review_id: int):
-    new_data = {
-        "text": "string",
-        "score": 0,
-        "id": 0,
-        "author_id": 0,
-        "artwork_id": 0
-    }
-    response = requests.put(f"http://127.0.0.1:8000/reviews/{review_id}", json=new_data)
-    updated_review = response.json()
-    return templates.TemplateResponse("review_update.html", {"request": request, "review": updated_review})
+    return templates.TemplateResponse("review-single.html", {"request": request, "review": review_data})
 
 
 # Route for tags
@@ -507,28 +371,6 @@ def get_tag(request: Request, tag_id: int):
     response = requests.get(f"http://127.0.0.1:8000/tags/{tag_id}", json=tag_data)
     tag_data = response.json()
     return templates.TemplateResponse("tag.html", {"request": request, "tag": tag_data})
-
-
-@app.get("/put-tags-form/{tag_id}", response_class=HTMLResponse)
-def update_tag(request: Request, tag_id: int):
-    new_data = {
-        "name": "string",
-        "description": "string"
-    }
-    response = requests.get(f"http://127.0.0.1:8000/tags/{tag_id}", json=new_data)
-    updated_tag = response.json()
-    return templates.TemplateResponse("tag_update.html", {"request": request, "tag": updated_tag})
-
-
-@app.put("/put-tags/{tag_id}", response_class=HTMLResponse)
-def update_tag(request: Request, tag_id: int):
-    new_data = {
-        "name": "string",
-        "description": "string"
-    }
-    response = requests.put(f"http://127.0.0.1:8000/tags/{tag_id}", json=new_data)
-    updated_tag = response.json()
-    return templates.TemplateResponse("tag_update.html", {"request": request, "tag": updated_tag})
 
 
 @app.get("/get-tags", response_class=HTMLResponse)
@@ -708,18 +550,6 @@ def create_tag(request: Request):
 
 
 # Route for users
-@app.get("/get-users", response_class=HTMLResponse)
-def show_users(request: Request):
-    user_data = {
-        "login": "string",
-        "password": "string",
-        "email": "user@example.com"
-    }
-    response = requests.get("http://127.0.0.1:8000/users/", json=user_data)
-    new_user = response.json()
-    return templates.TemplateResponse("users.html", {"request": request, "users": new_user})
-
-
 @app.get("/make-users-form", response_class=HTMLResponse)
 def create_user(request: Request):
     user_data = {

@@ -13,12 +13,12 @@
 		<meta property="og:description" content="" />
 		<!-- {{ url_for('static', path='/css/main-stylesheet.css') }} !-->
 		<meta property="og:site_name" content="I-Geek | Home" />
-		<link rel="shortcut icon" type="image/png" href="static/images/favicon.png" />
-		<link rel="stylesheet" type="text/css" href="static/css/reset.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="static/css/dat-menu.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="static/css/main-stylesheet.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="static/css/responsive.css" media="screen" />
+		<link rel="shortcut icon" type="image/png" href="../static/images/favicon.png" />
+		<link rel="stylesheet" type="text/css" href="../static/css/reset.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/dat-menu.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/main-stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../static/css/responsive.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
 		<meta name="theme-color" content="black">
 		<meta name="msapplication-navbutton-color" content="black">
@@ -30,16 +30,16 @@
 		<![endif]-->
 		<style>
 			#featured-img-1 {
-				background-image: url(static/images/image-1.jpg);
+				background-image: url(../static/images/image-1.jpg);
 			}
 			#featured-img-2 {
-				background-image: url(static/images/image-2.jpg);
+				background-image: url(../static/images/image-2.jpg);
 			}
 			#featured-img-3 {
-				background-image: url(static/images/image-3.jpg);
+				background-image: url(../static/images/image-3.jpg);
 			}
 			#featured-img-4 {
-				background-image: url(static/images/image-4.jpg);
+				background-image: url(../static/images/image-4.jpg);
 			}
 
 			#sidebar .panel,
@@ -127,7 +127,7 @@
 						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
 					</ul>
 					<ul class="load-responsive" rel="Menu">
-						<li><a href="login.html">Login</a></li>
+						<li><a href="/login">Login</a></li>
                         <li><a href="/make-users-form">signup</a></li>
 					</ul>
 				</div>
@@ -138,7 +138,7 @@
 					<div id="menu-bottom">
 						<nav id="menu" class="main-menu">
 							<div class="blur-before"></div>
-							<a href="/static" class="header-logo left"><img src="static/images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="/home" class="header-logo left"><img src="../static/images/logo.png" class="logo" alt="Revelio" title="" /></a>
 							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
 							<ul class="load-responsive" rel="Main menu">
 								<li><a href="/get-reviews"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
@@ -187,7 +187,7 @@
 							<div class="home-article right">
 								<form action="/get-categories-index" method="get">
 								<ul>
-									{% for category in categorys %}
+									{% for category in categories %}
 									<li>
 										<a href="/get-categories/{category_id}">
 											<strong>{{category.name}}</strong>
@@ -318,7 +318,7 @@
 					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
 					<div class="right">
 						<ul>
-							<li><a href="/static">Home page</a></li>
+							<li><a href="/home">Home page</a></li>
 							<li><a href="/about">About us</a></li>
 						</ul>
 					</div>
@@ -328,16 +328,16 @@
 			<!-- END .footer -->
 			</div>
 		</div>
-		<script type='text/javascript' src='static/jscript/jquery-1.11.2.min.js'></script>
-		<script type='text/javascript' src='static/jscript/modernizr.custom.50878.js'></script>
-		<script type='text/javascript' src='static/jscript/iscroll.js'></script>
-		<script type='text/javascript' src='static/jscript/dat-menu.js'></script>
+		<script type='text/javascript' src='../static/jscript/jquery-1.11.2.min.js'></script>
+		<script type='text/javascript' src='../static/jscript/modernizr.custom.50878.js'></script>
+		<script type='text/javascript' src='../static/jscript/iscroll.js'></script>
+		<script type='text/javascript' src='../static/jscript/dat-menu.js'></script>
 		<script type='text/javascript'>
 			var strike_featCount = 4;
 			var strike_autostart = true;
 			var strike_autoTime = 7000;
 		</script>
-		<script type='text/javascript' src='static/jscript/theme-script.js'></script>
+		<script type='text/javascript' src='../static/jscript/theme-script.js'></script>
 	<script>
 		function myFunction() {
 			var element = document.body;
