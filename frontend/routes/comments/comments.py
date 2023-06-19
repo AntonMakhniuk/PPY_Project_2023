@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 import requests
-from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from backend.dependencies import close_db_state, db_state, metadata
 from backend.routers import comments as comments_router
+
 app = FastAPI(
     on_startup=[lambda: metadata.create_all(bind=db_state.engine)],
     on_shutdown=[lambda: close_db_state(db_state)],

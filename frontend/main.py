@@ -1,4 +1,6 @@
-from fastapi import FastAPI, Request, Form
+from pathlib import Path
+
+from fastapi import Request
 from fastapi.templating import Jinja2Templates
 import requests
 
@@ -9,15 +11,11 @@ from sqlalchemy.orm import Session
 
 from backend.dependencies import close_db_state, db_state, metadata
 # from backend.dependencies import close_connection, engine, metadata
-from backend.models import User
-from backend.routers import tags as tags_router
-from backend.routers import categories as categories_router
 from backend.routers import artworks as artworks_router
-from backend.routers import comments as comments_router
-from backend.routers import reviews as reviews_router
-from backend.routers import users as users_router
+from backend.routers import tags as tags_router, categories as categories_router, reviews as reviews_router, \
+    users as users_router, comments as comments_router
 from backend.dependencies import get_db
-from backend.models import User
+from backend.schemas import User
 from backend.schemas import UserCreate
 
 app = FastAPI(
@@ -52,8 +50,8 @@ tags_metadata = [
     },
 ]
 
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-templates = Jinja2Templates(directory="frontend/templates/i-geek")
+app.mount("/static", StaticFiles(directory=Path(__file__).parent.parent.absolute() / "static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 app.include_router(router=tags_router.router, prefix="/tags", tags=["crud - tags"])
 app.include_router(router=categories_router.router, prefix="/categories", tags=["crud - categories"])

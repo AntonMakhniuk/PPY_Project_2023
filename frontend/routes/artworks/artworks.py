@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 import requests
-from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from backend.dependencies import close_db_state, db_state, metadata

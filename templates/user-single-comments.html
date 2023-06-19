@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset="utf-8" />
+		<title>I-Geek | User</title>
+		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta property="og:type" content="company" />
+		<meta property="og:title" content="I-Geek | Home" />
+		<meta property="og:image" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:site_name" content="I-Geek | Home" />
+		<link rel="shortcut icon" type="image/png" href="../static/images/favicon.png" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/dat-menu.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/main-stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/responsive.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
+		<meta name="theme-color" content="black">
+		<meta name="msapplication-navbutton-color" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--[if lt IE 9 ]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style>
+			/* Man content & sidebar top lne, default #256193 */
+			#sidebar .panel,
+			#main-box #main {
+				border-top: 5px solid #256193;
+			}
+
+			/* Slider colors, default #256193 */
+			a.featured-select,
+			#slider-info .padding-box ul li:before,
+			.home-article.right ul li a:hover {
+				background-color: #256193;
+			}
+
+			/* Button color, default #256193 */
+			.panel-duel-voting .panel-duel-vote a {
+				background-color: #256193;
+			}
+
+			/* Menu background color, default #000 */
+			#menu-bottom.blurred #menu > .blur-before:after {
+				background-color: #000;
+			}
+
+			/* Top menu background, default #0D0D0D */
+			#header-top {
+				background: #0D0D0D;
+			}
+
+			/* Sidebar panel titles color, default #333333 */
+			#sidebar .panel > h2 {
+				color: #333333;
+			}
+
+			/* Main titles color, default #353535 */
+			#main h2 span {
+				color: #353535;
+			}
+
+			/* Selection color, default #256193 */
+			::selection {
+				background: #256193;
+			}
+
+			/* Links hover color, default #256193 */
+			.article-icons a:hover,
+			a:hover {
+				color: #256193;
+			}
+
+			/* Image hover background, default #256193 */
+			.article-image-out,
+			.article-image {
+				background: #256193;
+			}
+
+			/* Image hover icons color, default #256193 */
+			span.article-image span .fa {
+				color: #256193;
+			}
+		</style>
+	</head>
+	<body class="no-slider">
+	<!-- <body class="has-top-menu"> -->
+		<!-- BEGIN #slider-imgs -->
+		<div id="slider-imgs">
+			<div class="featured-img-box">
+				<div id="featured-img-1" class="featured-img"></div>
+				<div id="featured-img-2" class="featured-img invisible"></div>
+				<div id="featured-img-3" class="featured-img invisible"></div>
+				<div id="featured-img-4" class="featured-img invisible"></div>
+			</div>
+		<!-- END #slider-imgs -->
+		</div>
+
+		<!-- BEGIN #top-layer -->
+		<div id="top-layer">
+			<div id="header-top">
+				<div class="wrapper">
+					<ul class="right">
+
+						<li><a href="https://github.com/AntonMakhniuk/PPY_Project_2023" target="_blank"><i class="fa fa-github"></i></a></li>
+						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
+					</ul>
+					<ul class="load-responsive" rel="Menu">
+						<li><a href="login.html">Login</a></li>
+                        <li><a href="/make-users-form">signup</a></li>
+					</ul>
+				</div>
+			</div>
+			<section id="content">
+
+				<header id="header">
+					<div id="menu-bottom">
+						<nav id="menu" class="main-menu">
+							<div class="blur-before"></div>
+							<a href="/app/frontendtend/static" class="header-logo left"><img src="../static/images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
+							<ul class="load-responsive" rel="Main menu">
+								<li><a href="/get-reviews"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
+
+								</li>
+								<li><a><span id="search-link" title="Search"><i class="fa fa-search"></i> Search</span></a>
+
+								</li>
+								<li><a ><span><i class="fa fa-paint-brush"></i>some</span></a>
+									<ul class="sub-menu">
+										<li><a href="/get-categories">category's</a></li>
+										<li><a href="/get-artworks">artworks</a></li>
+									</ul>
+								</li>
+
+								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
+
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+				<div id="main-box" class="full-width">
+					
+					<div id="main">
+						<form action="/get-users/{user_id}/comments" method="get">
+						<!-- BEGIN .user-profile -->
+						<div class="user-profile">
+							
+							<div class="profile-shadow"></div>
+
+							<!-- BEGIN .profile-left-side -->
+							<div class="profile-left-side">
+
+								<div class="the-profile-top">
+
+									<div class="avatar online">
+										<img src="../static/images/avatar-13.jpg" class="setborder" alt="" />
+									</div>
+									
+									<div>
+
+
+
+
+										<ul class="user-button-list">
+											<li><a href="#" class="defbutton profile-button disabled"><i class="fa fa-wrench"></i>Change profile info</a></li>
+										</ul>
+									</div>
+								</div>
+								
+								<div class="the-profile-navi">
+									<ul class="profile-navi">
+										<li><a href="#top"><span class="left-avatar"><img src="../static/images/photos/avatar-1.jpg" alt="" /></span>Viewing <b>Datcouch</b> profile<br />Back to top<span class="clear-float"></span></a></li>
+										<li><a href="user-single.html"><i class="fa fa-globe"></i>Profile information</a></li>
+										<li class="active"><a href="user-single-comments.html"><i class="fa fa-comment"></i>My comments</a></li>
+										<li><a href="user-single-review.html"><i class="fa fa-book"></i>Reviews</a></li>
+
+									</ul>
+									
+									<div class="profile-panel instagram">
+										<div class="pieces">
+											<a href="https://instagram.com/marcisbee/" target="_blank"><img src="https://scontent-fra.cdninstagram.com/hphotos-xfp1/t51.2885-15/e15/10576140_778241095547266_331905980_n.jpg" alt="" /></a>
+											<a href="https://instagram.com/marcisbee/" target="_blank"><img src="https://scontent-fra.cdninstagram.com/hphotos-xpa1/outbound-distilleryimage1/t0.0-17/OBPTH/427393eef7af11e2b65722000a9e00be_7.jpg" alt="" /></a>
+											<a href="https://instagram.com/marcisbee/" target="_blank"><img src="https://scontent-fra.cdninstagram.com/hphotos-xpa1/outbound-distilleryimage5/t0.0-17/OBPTH/3259ed5670c711e2a9dd22000a9e29a7_7.jpg" alt="" /></a>
+										</div>
+										<div class="clear-float"></div>
+									</div>
+								</div>
+
+							<!-- END .profile-left-side -->
+							</div>
+
+							<!-- BEGIN .profile-right-side -->
+							<div class="profile-right-side">
+
+								<h2><span>My comments</span></h2>
+								<!-- BEGIN .content-padding -->
+								<div class="content-padding">
+									
+									<div class="comment-part">
+
+										<!-- BEGIN #comments -->
+										<ol id="comments">
+											{% for comment in comments %}
+											<li>
+												<div class="comment-inner">
+													<div class="comment-avatar">
+														<img src="http://1.gravatar.com/avatar/b1c65c520efb9520269584aae4323fae?s=73&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D73&amp;r=G" alt="DatCouch">
+													</div>
+													<div class="comment-content">
+														<div class="comment-header">
+															<h3><a href="#">{{user.login}}</a></h3>
+															<h4><a href="#">{{artwork.title}}</a></h4>
+														</div>
+														<p>{{comment.text}}</p>
+													</div>
+												</div>
+
+											</li>
+											{% endfor %}
+										<!-- #comment-## -->
+										</ol>
+										<div class="comments-pager"></div>
+
+						
+									</div>
+
+								<!-- END .content-padding -->
+								</div>
+
+							<!-- END .profile-right-side -->
+							</div>
+
+						<div class="clear-float"></div>
+							<!-- END .user-profile -->
+						</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+			
+		<div class="clear-float"></div>
+		
+		<div class="wrapper">
+			<!-- BEGIN .footer -->
+			<div class="footer">
+
+				<div class="footer-top"></div>
+				
+				<div class="footer-content">
+
+
+
+					<!-- BEGIN .panel -->
+					<div class="panel">
+						<h2>Contact info</h2>
+						<div class="panel-content">
+
+							<div>
+								<h4>If you want to contact us</h4>
+								<p>here our Emails</p>
+
+								<a href="mailto:s24379@pjwstk.edu.pl" class="icon-line">
+                                    <i class="fa fa-comment"></i><span>s24379@pjwstk.edu.pl</span>
+								</a>
+			                     <a href="mailto:s25416@pjwstk.edu.pl" class="icon-line">
+									<i class="fa fa-comment"></i><span>s25416@pjwstk.edu.pl</span>
+								</a>
+                                <p>Also here our GitHub link</p>
+                                <a href="https://github.com/AntonMakhniuk/PPY_Project_2023" class="icon-line">
+									<i class="fa fa-github"></i><span>GitHub link</span>
+								</a>
+							</div>
+
+						</div>
+					<!-- END .panel -->
+					</div>
+
+					<!-- BEGIN .panel -->
+					<div class="panel">
+						<h2>Tags Cloud</h2>
+						<form action="/get-tags-usc" method="get">
+							<div class="panel-content">
+								{% for tag in tags %}
+								<div class="tagcloud">
+									<a href="/get-tags/{tag_id}">{{tag.name}}</a>
+								</div>
+								{% endfor %}
+							</div>
+							</form>
+					<!-- END .panel -->
+					</div>
+
+				</div>
+
+				<div class="footer-bottom">
+					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
+					<div class="right">
+						<ul>
+							<li><a href="/app/frontendtend/static">Home page</a></li>
+							<li><a href="/about">About us</a></li>
+						</ul>
+					</div>
+					<div class="clear-float"></div>
+				</div>
+				
+			<!-- END .footer -->
+			</div>
+		</div>
+		<script type='text/javascript' src='../static/jscript/jquery-1.11.2.min.js'></script>
+		<script type='text/javascript' src='../static/jscript/modernizr.custom.50878.js'></script>
+		<script type='text/javascript' src='../static/jscript/iscroll.js'></script>
+		<script type='text/javascript' src='../static/jscript/dat-menu.js'></script>
+		<script type='text/javascript'>
+			var strike_autostart = false;
+		</script>
+		<script type='text/javascript' src='../static/jscript/theme-script.js'></script>
+	</body>
+</html>

@@ -36,7 +36,6 @@ def close_db_state(db_state: DbState) -> None:
 db_state = create_db_state()
 get_db = db_state.get_db
 
-
 # engine = create_engine(DB_URL, connect_args={"check_same_thread": False})
 # connection = engine.connect()
 # SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

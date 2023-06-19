@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset="utf-8" />
+		<title>I-Geek | Artwork</title>
+		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta property="og:type" content="company" />
+		<meta property="og:title" content="I-Geek | Home" />
+		<meta property="og:image" content="" />
+		<meta property="og:site_name" content="I-Geek | Home" />
+		<link rel="shortcut icon" type="image/png" href="../static/images/favicon.png" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/dat-menu.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/main-stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/responsive.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
+		<meta name="theme-color" content="black">
+		<meta name="msapplication-navbutton-color" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--[if lt IE 9 ]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style>
+			/* Man content & sidebar top lne, default #256193 */
+			#sidebar .panel,
+			#main-box #main {
+				border-top: 5px solid #256193;
+			}
+
+			/* Slider colors, default #256193 */
+			a.featured-select,
+			#slider-info .padding-box ul li:before,
+			.home-article.right ul li a:hover {
+				background-color: #256193;
+			}
+
+			/* Button color, default #256193 */
+			.panel-duel-voting .panel-duel-vote a {
+				background-color: #256193;
+			}
+
+			/* Menu background color, default #000 */
+			#menu-bottom.blurred #menu > .blur-before:after {
+				background-color: #000;
+			}
+
+			/* Top menu background, default #0D0D0D */
+			#header-top {
+				background: #0D0D0D;
+			}
+
+			/* Sidebar panel titles color, default #333333 */
+			#sidebar .panel > h2 {
+				color: #333333;
+			}
+
+			/* Main titles color, default #353535 */
+			#main h2 span {
+				color: #353535;
+			}
+
+			/* Selection color, default #256193 */
+			::selection {
+				background: #256193;
+			}
+
+			/* Links hover color, default #256193 */
+			.article-icons a:hover,
+			a:hover {
+				color: #256193;
+			}
+
+			/* Image hover background, default #256193 */
+			.article-image-out,
+			.article-image {
+				background: #256193;
+			}
+
+			/* Image hover icons color, default #256193 */
+			span.article-image span .fa {
+				color: #256193;
+			}
+		</style>
+	</head>
+	<body class="no-slider">
+	<!-- <body class="has-top-menu"> -->
+		<!-- BEGIN #slider-imgs -->
+		<div id="slider-imgs">
+			<div class="featured-img-box" style="background-image: url(image-90.jpg);">
+				<div id="featured-img-1" class="featured-img"></div>
+				<div id="featured-img-2" class="featured-img invisible"></div>
+				<div id="featured-img-3" class="featured-img invisible"></div>
+				<div id="featured-img-4" class="featured-img invisible"></div>
+			</div>
+		<!-- END #slider-imgs -->
+		</div>
+
+		<!-- BEGIN #top-layer -->
+		<div id="top-layer">
+			<div id="header-top">
+				<div class="wrapper">
+					<ul class="right">
+
+						<li><a href="https://github.com/AntonMakhniuk/PPY_Project_2023" target="_blank"><i class="fa fa-github"></i></a></li>
+						<li><a class="header-button__icon tooltip" data-place="bottom-end" aria-label="Theme" data-toggle-theme="" onclick="myFunction()"><i class="fa fa-moon-o"></i></a></li>
+					</ul>
+					<ul class="load-responsive" rel="Menu">
+						<li><a href="login.html">Login</a></li>
+                        <li><a href="/make-users-form">signup</a></li>
+					</ul>
+				</div>
+			</div>
+			<section id="content">
+
+				<header id="header">
+					<div id="menu-bottom">
+						<nav id="menu" class="main-menu">
+							<div class="blur-before"></div>
+							<a href="/app/frontendtend/static" class="header-logo left"><img src="../static/images/logo.png" class="logo" alt="Revelio" title="" /></a>
+							<a href="#dat-menu" class="datmenu-prompt"><i class="fa fa-bars"></i>Menu</a>
+							<ul class="load-responsive" rel="Main menu">
+								<li><a href="/get-reviews"><span><i class="fa fa-comment"></i><strong>Review</strong></span></a>
+
+								</li>
+								<li><a><span id="search-link" title="Search"><i class="fa fa-search"></i> Search</span></a>
+
+								</li>
+								<li><a ><span><i class="fa fa-paint-brush"></i>some</span></a>
+									<ul class="sub-menu">
+										<li><a href="/get-categories">category's</a></li>
+										<li><a href="/get-artworks">artworks</a></li>
+									</ul>
+								</li>
+
+								<li><a href="/get-users/{user_id}"><span><i class="fa fa-users"></i><strong>user</strong></span></a>
+
+								</li>
+							</ul>
+						</nav>
+					</div>
+					
+				</header>
+				<div id="main-box" class="full-width">
+					f<form action="/get-artworks/{artwork_id}" method="get">
+					<div id="main" itemscope="" itemtype="http://data-vocabulary.org/Review">
+						<div class="game-info-left">
+							<img itemprop="image" src="{{artwork.poster_url}}" class="game-poster" alt="images/posters/2351232-tomb_raider.jpg" />
+
+							<div class="game-info-details">
+								<div class="game-info-buttons">
+									<a href="#" class="defbutton green"><i class="fa fa-bell"></i>Follow News</a>
+								</div>
+								<div class="game-info-rating">
+									<h3>Revelio Review</h3>
+									<hr />
+									<strong itemprop="rating">4.5</strong>
+									<div class="rating-stars">
+										<div class="rating-stars-inner" style="width: 90%;"></div>
+									</div>
+									<a href="rewiew-single.html" class="defbutton"><i class="fa fa-file-text-o"></i>Read Review</a>
+								</div>
+								<div class="game-info-buttons">
+									<a href="artworks-single-download.html" class="defbutton"><i class="fa fa-shopping-cart"></i>Download</a>
+								</div>
+								<div class="game-info-graph">
+									<div>
+										<span>Release Date</span>
+										<strong itemprop="datePublished" >{{artwork.release_date}}</strong>
+
+									</div>
+									<div>
+										<span>Tags</span>
+										<form action="/get-artworks/{artwork_id}/tags" method="get">
+											{% for tag in tags %}
+										<strong itemprop="applicationCategory"><a href="/get-tags/{tag_id}">{{tag.name}}</a></strong>
+											{% endfor %}
+										</form>
+									</div>
+									<meta itemprop="reviewer" content="Datcouch.com">
+								</div>
+
+							</div>
+						</div>
+						<div class="game-info-right">
+
+							<!-- BEGIN .game-menu -->
+							<div class="game-menu" style="border-bottom: 5px solid #921913;">
+								<div class="game-overlay-info">
+									<h1 itemprop="itemreviewed">{{artwork.title}}</h1>
+								</div>
+								<ul>
+									<li><a href="/get-artworks/{artwork_id}"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Information</a></li>
+									<li class="active" style="background-color: #921913;"><a href="artworks-single-download.html"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Buy game</a></li>
+								</ul>
+							<!-- END .game-menu -->
+							</div>
+
+							<h2><span>Buy this game</span></h2>
+							<div class="content-padding">
+								
+								<!-- BEGIN .video-game-stores -->
+								<div class="video-game-stores">
+
+									<a href="#" target="_blank" class="item">
+										<span class="store-title">google drive</span>
+										<strong>{{title.name}}</strong>
+									</a>
+
+									<a href="#" target="_blank" class="item">
+										<span class="store-title">mega</span>
+										<strong>{{title.name}}</strong>
+									</a>
+
+									<a href="#" target="_blank" class="item">
+										<span class="store-title">fast</span>
+										<strong>{{title.name}}</strong>
+									</a>
+
+
+
+									<div class="clear-float"></div>
+
+								<!-- END .video-game-stores -->
+								</div>
+								
+							</div>
+
+						</div>
+
+						<div class="clear-float"></div>
+						
+					</div>
+				</form>
+				</div>
+			</section>
+			</div>
+		</div>
+			
+		<div class="clear-float"></div>
+		
+		<div class="clear-float"></div>
+
+		<div class="wrapper">
+			<!-- BEGIN .footer -->
+			<div class="footer">
+
+				<div class="footer-top"></div>
+
+				<div class="footer-content">
+
+
+
+					<!-- BEGIN .panel -->
+					<div class="panel">
+						<h2>Contact info</h2>
+						<div class="panel-content">
+
+							<div>
+								<h4>If you want to contact us</h4>
+								<p>here our Emails</p>
+
+								<a href="mailto:s24379@pjwstk.edu.pl" class="icon-line">
+                                    <i class="fa fa-comment"></i><span>s24379@pjwstk.edu.pl</span>
+								</a>
+			                     <a href="mailto:s25416@pjwstk.edu.pl" class="icon-line">
+									<i class="fa fa-comment"></i><span>s25416@pjwstk.edu.pl</span>
+								</a>
+                                <p>Also here our GitHub link</p>
+                                <a href="https://github.com/AntonMakhniuk/PPY_Project_2023" class="icon-line">
+									<i class="fa fa-github"></i><span>GitHub link</span>
+								</a>
+							</div>
+
+						</div>
+					<!-- END .panel -->
+					</div>
+
+					<!-- BEGIN .panel -->
+					<div class="panel">
+						<h2>Tags Cloud</h2>
+						<form action="/get-tags-artwork-sd" method="get">
+							<div class="panel-content">
+								{% for tag in tags %}
+								<div class="tagcloud">
+									<a href="/get-tags/{tag_id}">{{tag.name}}</a>
+								</div>
+								{% endfor %}
+							</div>
+							</form>
+					<!-- END .panel -->
+					</div>
+
+				</div>
+
+				<div class="footer-bottom">
+					<div class="left">&copy; Copyright 2023 <strong>I-Geek</strong> designed by <strong>Oleksandr Sokil s25416</strong></div>
+					<div class="right">
+						<ul>
+							<li><a href="/app/frontendtend/static">Home page</a></li>
+							<li><a href="/about">About us</a></li>
+						</ul>
+					</div>
+					<div class="clear-float"></div>
+				</div>
+				
+			<!-- END .footer -->
+			</div>
+		</div>
+		<script type='text/javascript' src='../static/jscript/jquery-1.11.2.min.js'></script>
+		<script type='text/javascript' src='../static/jscript/modernizr.custom.50878.js'></script>
+		<script type='text/javascript' src='../static/jscript/iscroll.js'></script>
+		<script type='text/javascript' src='../static/jscript/dat-menu.js'></script>
+		<script type='text/javascript'>
+			var strike_autostart = false;
+		</script>
+		<script type='text/javascript' src='../static/jscript/theme-script.js'></script>
+	</body>
+</html>

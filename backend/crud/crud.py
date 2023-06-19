@@ -76,7 +76,8 @@ def get_comments_from_user(db: Session, user_id: int, skip: int = 0, limit: int 
     return db.query(models.Comment).filter(models.Comment.author_id == user_id).offset(skip).limit(limit).all()
 
 
-def get_comments_from_artwork(db: Session, artwork_id: int, skip: int = 0, limit: int = 100) -> list[Type[models.Comment]]:
+def get_comments_from_artwork(db: Session, artwork_id: int, skip: int = 0, limit: int = 100) -> list[Type[
+    models.Comment]]:
     return db.query(models.Comment).filter(models.Comment.artwork_id == artwork_id).offset(skip).limit(limit).all()
 
 
@@ -194,7 +195,8 @@ def get_all_artworks(db: Session, skip: int = 0, limit: int = 100) -> list[Type[
     return db.query(models.Artwork).offset(skip).limit(limit).all()
 
 
-def get_artworks_from_category(db: Session, category_id: int, skip: int = 0, limit: int = 100) -> list[Type[models.Artwork]]:
+def get_artworks_from_category(db: Session, category_id: int, skip: int = 0, limit: int = 100) -> list[Type[
+    models.Artwork]]:
     return db.query(models.Artwork).filter(models.Artwork.category_id == category_id).offset(skip).limit(limit).all()
 
 
